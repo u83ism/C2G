@@ -1,0 +1,16 @@
+BODY {background : url(gazou/kabe.gif) fixed ;}
+
+a { text-decoration : none ;}
+
+a:hover { text-decoration : underline ;}
+
+table { 
+	border-collapse: collapse;
+}
+
+figure { text-align : center ; }
+
+figcaption {
+	font-size : small ;
+	text-align : center ;
+}
