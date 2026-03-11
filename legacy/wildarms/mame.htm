@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+<title>豆知識</title>
+<link rel="icon" href="http://cradle2grave.rulez.jp/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="shortcut icon" href="http://cradle2grave.rulez.jp/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<style TYPE="text/css">
+<!--
+BODY {margin:0px;}
+body,td{ line-height : 17pt;}
+-->
+</style>
+</head>
+<body link="#0000FF" vlink="#0000FF" alink="#0000FF">
+<br>
+ 
+<div align="center"><br>
+ <br> 
+  <table width="60%" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+    <tr bgcolor="#CC99CC"> 
+      <td colspan="2" nowrap> 
+        <div align="center"><b><font size="+1">ステータス系</font></b></div>      </td>
+    </tr>
+    <tr bgcolor="#FFFFFF"> 
+      <td width="50%" nowrap><a href="#mame1">ステータスの意味・算出方法</a></td>
+      <td width="50%" nowrap><a href="#mame3">パワープレートの修正値の話</a></td>
+    </tr>
+    <tr bgcolor="#CC99CC"> 
+      <td colspan="2" nowrap> 
+        <div align="center"><b><font size="+1">テクニック系</font></b></div>      </td>
+    </tr>
+    <tr bgcolor="#FFFFFF"> 
+      <td width="50%" nowrap><a href="#mame5">やぎのぬいぐるみで半無敵</a></td>
+      <td width="50%" nowrap><a href="#mame7">エンカウントを避ける（状況限定）</a></td>
+    </tr>
+    <tr bgcolor="#FFFFFF"> 
+      <td width="50%" nowrap><a href="#mame8">アイテムを盗みやすくする</a></td>
+      <td width="50%" nowrap><a href="#mame11">ディバイドショットの効く意外な敵</a></td>
+    </tr>
+    <tr bgcolor="#CC99CC"> 
+      <td colspan="2" nowrap> 
+        <div align="center"><b><font size="+1">その他</font></b></div>      </td>
+    </tr>
+    <tr bgcolor="#FFFFFF"> 
+      <td width="50%" nowrap><a href="#mame2">カンストの先</a></td>
+      <td width="50%" nowrap><a href="#mame6">クリティカルヒットの話</a><a href="#mame4"></a></td>
+    </tr>
+    <tr bgcolor="#FFFFFF"> 
+      <td width="50%" nowrap><a href="#mame9">フォースアビリティの話</a><a href="#mame6"></a></td>
+      <td width="50%" nowrap><a href="#mame10">逃走の話</a><a href="#mame9"></a></td>
+    </tr>
+ </table>
+  <br>
+  <hr color="#000000" size="1">
+  <br>
+  <table width="70%" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" bgcolor="#FFFFFF">
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame1"></a><font size="+1">ステータスの意味・算出方法</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　WAではそこまで気にしなくても進めてしまうので、見逃されがちなステータス値。意味の方も合わせて、算出方法を下に列挙します。<br>
+        <br>
+        <b>&lt;基本ステータス&gt; </b><br>
+        算出方法は全部共通で、<br>
+        <font color="#9900FF">基本ステータス＝キャラクターのステータス×装備するガーディアンプレートの修正値＋装備品の特別補正値</font><br>
+        <table width="80%" border="1" align="center" cellpadding="5" cellspacing="0" bordercolor="#000000" bgcolor="#FFFFFF">
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">Str</font></b></div></td>
+								<td width="90%"><font size="2">腕力値。ATPに影響する。ダメージ算出に直接絡まない。</font></td>
+						</tr>
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">VIT</font></b></div></td>
+								<td width="90%"><font size="2">体力値。DFPに影響する。ダメージ算出に直接絡まない。</font></td>
+						</tr>
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">SOR</font></b></div></td>
+								<td width="90%"><font size="2">魔力値。魔法攻撃力で、ガーディアンや魔法のダメージ算出に用いる。またMGRにも影響する。</font></td>
+						</tr>
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">RES</font></b></div></td>
+								<td width="90%"><font size="2">反応値。そのまま戦闘における行動順に影響する。またPRYにも影響する。</font></td>
+						</tr>
+				</table>
+        <b><br>
+        &lt;上位ステータス&gt;</b><br>
+        算出方法は3つに分かれています。<br>
+        <font color="#9900FF">ATP＝Str＋装備品の数値<br>
+        DFP・MGR＝VIT・SOR×0.5＋装備品の数値<br>
+        PRY＝RES×0.1＋装備品の特別補正値</font><br>
+        <table width="80%" border="1" align="center" cellpadding="5" cellspacing="0" bordercolor="#000000" bgcolor="#FFFFFF">
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">ATP</font></b></div></td>
+								<td width="90%"><font size="2">攻撃力。いわゆる物理攻撃力で、攻撃等のダメージの算出に用いる。</font></td>
+						</tr>
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">DFP</font></b></div></td>
+								<td width="90%"><font size="2">防御力。いわゆる物理防御力で、攻撃等のダメージをどれだけ防ぐかに影響する。</font></td>
+						</tr>
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">MGR</font></b></div></td>
+								<td width="90%"><font size="2">魔法抵抗力。魔力ダメージをどれだけ防ぐかに影響する。</font></td>
+						</tr>
+						<tr>
+							<td width="10%" bgcolor="#CC9999"><div align="center"><b><font size="2">PRY</font></b></div></td>
+								<td width="90%"><font size="2">回避率。％表示。小数点切捨てのため、RESが無駄になることが多い。</font></td>
+						</tr>
+				</table>
+        <br>
+        ちなみに特別補正値とは、シェリフスターの各種ステータス上昇のことです。さらに小数点は切り捨てで計算されています。<br>
+        <br>
+        <br></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame2"></a><font size="+1">カンストの先</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　ザックのATPは非常に高く、1000を越えるような場合もしばしばありますが、普通は999が限界です。しかし、戦闘中にセシリアのハイパー等で、計算上、1000を越えるような状況になった場合、ちゃんとATP1000以上の数値で反映されます。<br>
+      		　なお999到達後もそのステータスに対応するアップルを使うことができますが、効果は無いので注意。<br>
+      				　現在、フォースLv補正の影響などを検証中です。<br>
+        <br>
+        <br>
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame3"></a><font size="+1">パワープレートの修正値の話</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　某社の攻略本では誤解を招く書き方がしてあったので、この項目があるわけなんですが、<font color="#9900FF">パワープレートを装備した時に上昇する値は、基本的にStr・VIT・SOR・RESの4項目です。</font>ATP等はStrとかと連動してるため、結果的に上昇しているわけです。<br>
+        <br>
+        <br>
+   		</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame5"></a><font size="+1">やぎのぬいぐるみで半無敵</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　やぎのぬいぐるみの効果は、「死亡時に、装備中のやぎのぬいぐるみの消失と引き換えに自動的に復活」。つまり……<font color="#0099FF">先にアーデルハイドのブラックマーケットで大量に買っておき、死亡→自動発動してぬいぐるみが無くなるごとに、新しいのを装備し直せば死ぬことがなくなります。</font><br>
+        　まぁぬいぐるみが無くなれば、もちろん復活できないわけですが……。あまりにも有名かつ、手間いらず、簡単に思いつけるわりに凶悪なテクニック。面白くなくなるのでやる時は自己責任でどうぞ。<br>
+        <br>
+        <br>
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame6"></a><font size="+1">クリティカルヒットの話</font></b></font></td>
+    </tr>
+    <tr> 
+      <td> <font color="#FF0000">　</font>WAのクリティカルヒットは「<font color="#9900FF">防御力無視攻撃</font>」です。いや、それだけなんですが。自分は人に教えてもらうまで、ずっと「ダメージ2倍攻撃」だと思ってました。（汗）<br>
+        <br>
+        <br>     </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame7"></a><font size="+1">エンカウントを避けるテクニック</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　もともとエンカウント率の低いこのゲームでさらに敵に会わない方法。3人がばらばらに行動するところ（ガーディアン神殿、トライピラー、パンデモニウム地下など）で、「少し進んでは切り換える」ということを繰り返せば全くエンカウントしません。<font color="#0099FF">このゲームは「一定歩数（多少のランダムあり）でエンカウントする」というシステムなので、カウンターが規定歩数に達するまでにキャラクター切り換えでリセットしてしまえばいい</font>のです。<br>
+      　またロディのグッズ「ローラーダッシュ」で走行している間はエンカウントしないようになっているため、連続で使うことによって大幅にエンカウントを減らすことができます。<br>
+        <br>
+        <br>
+     </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame8"></a><font size="+1">アイテムを盗みやすくする</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　手に入れたいアイテムがあるのに、そのモンスターが弱すぎて「反撃」などで倒してしまう、そんなことはありませんか？限定的ではありますが、その回避方法を。<br>
+        　まず、そのモンスターは魔法「レインボウ」で回復する（もしくはダメージ０）でしょうか？ 回復する場合、必ず何かの属性攻撃で回復しているはずです。その属性を見つけましょう。見つけたなら、その属性のリング（コートセイムで売っています）をつけて、通常攻撃しましょう。これで、回復し続けるので相手が「すぐ死ぬ」ことはありません。好きなだけトリックスターして、その分を回復してあげましょう。<br>
+        <br>
+        （例）<br>
+        アビスで「ウォジャノーイ」と出会いました。彼らからは貴重左手装備「カエルバッジ」を盗めるのですが、いかんせん確率が悪い上、HPも低く、しかもエンカウント率まで低いのです。そこで、全員「みずのリング」を装備し、通常攻撃すれば回復するようにしました。これでウォジャノーイは死ぬことを許されず、えんえんトリックスターされ続けるのでした。<br>
+        　なお、「マジックシール」「マイトボディ」「ディフェンサー」を使えばより効率が上がります。この方法は「回復」ではなく「無効」の敵にも一応は有効です。ただし、攻撃力の低いトリックスターだけで倒してしまうこともままありますが。 
+        <br>
+        <br>
+        <br>
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame9"></a><font size="+1">フォースアビリティの話</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　ダブルコマンド等でフォースポイント消費すると、当然のことながらステータス修正が無くなりますが、<font color="#9900FF">無くなるタイミングはフォース使用したターンの頭、アクセラレイターよりも前です。</font>つまりダブルコマンド等で攻撃した場合でも、その攻撃には修正がかかりません。当然ながら防御でも同じことが言えます。<br>
+        　さらにもう一つ。フォースアビリティ使用選択時に、使用する前に死んでしまった場合、たとえ「やぎのぬいぐるみ」や「ライフガード」で生き返ったとしてもそのフォースは普通発動しません。しかし、「マテリアル」と「ハイ・マテリアル」に限っては発動します。これは「できなかった場合」の下位の行動が指定されていないために起こる現象です。 
+        <br>
+        <br>
+        （例）<br>
+        ボス「ルシファア」と戦っている際に、ロディは「オードリューク」をマテリアルして、ザックは「ダブルコマンド」で「ヒーリングファクター」と「エースインザフォール」を選択しました。しかし、そのターンの初めにルシファアは全体攻撃「ビームフェンサー」を行い、全員死亡してしまいました。<br>
+        　しかし、こんなこともあろうかと全員「やぎのぬいぐるみ」を装備していたので、そのまま反撃に移ることになりました。この時点で全員のフォースは０に戻っています。ザックは「ヒーリングファクター」を使用しますが、「エースインザフォール」は使用できませんでした。しかし、ロディはマテリアルすることができました。 
+        <br>
+        　以下に「下位の行動」をまとめておきます。<br>
+        <br>
+        &lt;ロディ&gt;<br>
+        ロックオン……通常のアーム攻撃。<br>
+        ディフェンサー……ターン最初に確定されるのでなし、しかし死亡で解除される。<br>
+        ブーストアタック……通常のアーム攻撃。<br>
+        <br>
+        &lt;ザック&gt;<br>
+        アクセラレイター……ターン最初に確定されるので、発動前に死亡の可能性が無い。<br>
+        ソニックビジョン……通常攻撃。（ただし、RES＋200％なのでよほどザックが遅くない限り、<br>
+        ソニックビジョンが発動する前に殺されることはほとんどない）<br>
+        ダブルコマンド……1回目に指定した行動のみをする。<br>
+        <br>
+        &lt;セシリア&gt;<br>
+        ミスティック……消費アイテムは1人目のみに。特殊アイテムは使用不可。（何も起きない）<br>
+        デュアルキャスト……1回目に指定した魔法のみを唱える。<br>
+         <br>
+        <br>
+   		</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame10"></a><font size="+1">逃走の話</font></b></font></td>
+    </tr>
+    <tr> 
+     <td> 　まず基本事項として敵にもレベルが設定されてます。こちらとのレベル差で様々な要素が決定されます。逃走確率、反撃率、オートモード関連等。<font color="#9900FF">逃走に関してはラックも関係しており、全員がBESTの時、逃走可能レベルが最大になります。</font><br>
+        <br>
+        <br>
+     </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CC99CC"> <font color="#000000"><b><a name="mame11"></a><font size="+1">ディバイドショットの効く意外な敵</font></b></font></td>
+    </tr>
+    <tr> 
+      <td> 　ディバイドショット。相手のHPの半分のダメージを与える早撃ち。（最高ダメージは9999）。<br>
+        　ボス等には普通は効かないですが、一部の敵には効きます。まず有名どころで<font color="#0099FF">古代の闘技場で出てくるメデイア・バッドニュース・ジャバウォック・リバーサイダー。</font>低レベルでサバイバルアリーナを勝ち抜くには必須事項です。<br>
+        　そして、なんと<font color="#0099FF">ラギュ・オ・ラギュラにも効きます。</font>これは要チェックです。<br>
+        <br>
+        <br>      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <br>
+<a href="../index.htm">トップに戻る</a><br>
+<bR>
+</div>
+</body>
+</html>
