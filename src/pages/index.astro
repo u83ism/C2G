@@ -1,17 +1,168 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <!-- 更新履歴 -->
+  <div class="updates">
+    <div class="section-label">更新履歴</div>
+    <table>
+      <tr>
+        <td>2025/10/12</td>
+        <td>
+          <ul>
+            <li>Civ6についての雑文を書いたのでリンクを張りました</li>
+            <li>リンク回りを整備</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- メイン攻略 -->
+  <div class="section-label">メイン攻略</div>
+  <div class="games-grid">
+
+    <div class="game-card">
+      <h2>ワイルドアームズ（無印）<small>Wild Arms / PS</small></h2>
+      <ul>
+        <li><a href="/wildarms/about">概要</a></li>
+        <li><a href="/wildarms/story">ストーリー攻略 <span class="wip">（製作途中）</span></a></li>
+        <li><a href="/wildarms/eventdeta">ミニゲーム・イベントデータ</a></li>
+        <li><a href="/wildarms/mame">豆知識</a></li>
+        <li><a href="/wildarms/secret">隠し要素</a></li>
+        <li><a href="/wildarms/urawaza">裏技・バグ技</a></li>
+        <li><a href="/wildarms/walksea">「海歩きバグ」検証</a></li>
+        <li><a href="/wildarms/item">盗める・落とす重要アイテムリスト</a></li>
+        <li>
+          ステータス成長表
+          <ul>
+            <li><a href="/wildarms/s-rody">ロディ</a></li>
+            <li><a href="/wildarms/s-zack">ザック</a></li>
+            <li><a href="/wildarms/s-cecilia">セシリア</a></li>
+            <li><a href="/wildarms/s-graph">グラフによる比較</a></li>
+          </ul>
+        </li>
+        <li>
+          戦闘研究
+          <ul>
+            <li><a href="/wildarms/b-rody">ロディ</a></li>
+            <li><a href="/wildarms/b-zack">ザック</a></li>
+            <li><a href="/wildarms/b-cecilia">セシリア</a></li>
+            <li><a href="/wildarms/b-guardian">ガーディアン関連研究</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>魔術士オーフェン<small>Sorcerous Stabber ORPHEN / PS</small></h2>
+      <ul>
+        <li><a href="https://u83ism.github.io/DLB/orphen/aboutg.htm" target="_blank" rel="noopener">概要 ↗</a></li>
+        <li><span class="wip">ストーリー攻略（未）</span></li>
+        <li><a href="https://u83ism.github.io/DLB/orphen/boss.htm" target="_blank" rel="noopener">ボス攻略 ↗</a></li>
+        <li><a href="https://u83ism.github.io/DLB/orphen/battle.htm" target="_blank" rel="noopener">戦闘指南 ↗</a></li>
+        <li><a href="https://u83ism.github.io/DLB/orphen/secret.htm" target="_blank" rel="noopener">隠し要素＆小ネタ ↗</a></li>
+        <li><span class="wip">敵データベース（未）</span></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>各種プロレスゲーム</h2>
+      <ul>
+        <li>
+          エキサイティングプロレス5
+          <ul>
+            <li><a href="http://prowrestling.jpn.org/game/5season.htm" target="_blank" rel="noopener">シーズンモード攻略 ↗ <span class="wip">（製作途中）</span></a></li>
+            <li><a href="http://prowrestling.jpn.org/game/5movelist.htm" target="_blank" rel="noopener">技捜索用リスト ↗</a></li>
+            <li><a href="http://prowrestling.jpn.org/game/5movechange.htm" target="_blank" rel="noopener">技変更ガイド ↗</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ゲームメモ・考察 -->
+  <div class="section-label">ゲームメモ・考察</div>
+  <div class="games-grid">
+
+    <div class="game-card">
+      <h2>Slay the Spire</h2>
+      <ul>
+        <li><a href="/slay_the_spire/watcher">Watcherクラス考察</a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>Civilization 6</h2>
+      <ul>
+        <li><a href="/civilization/civ6-heroes">「英雄と伝説」モード 考察</a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>Civilization Revolution</h2>
+      <ul>
+        <li><a href="/civilization/civ-revolution">四方山メモ</a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>Among Us</h2>
+      <ul>
+        <li><a href="/mini/among-us">2024年のAmong Us 考</a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>BLACK/MATrIXシリーズ</h2>
+      <ul>
+        <li><a href="/bm/bm2-wp">B/M2 武器熟練度考察</a></li>
+        <li><a href="/bm/bmoo-exp">B/MOO 自動系スキル修得考察</a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>Tropico</h2>
+      <ul>
+        <li><a href="/tropico">攻略メモ</a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>Dance Dance Revolution</h2>
+      <ul>
+        <li>
+          DDR用語集
+          <ul>
+            <li><a href="/mini/ddr-words-1">曲名</a></li>
+            <li><a href="/mini/ddr-words-2">譜面・テクニック・基本用語・その他</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>首都高バトル0</h2>
+      <ul>
+        <li><a href="/mini/highway">攻略・裏技・データ</a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>SSX<small>エクストリームレーシングSSX</small></h2>
+      <ul>
+        <li><a href="/mini/ssx">攻略メモ <span class="wip">（製作途中）</span></a></li>
+      </ul>
+    </div>
+
+    <div class="game-card">
+      <h2>Final Fantasy 5</h2>
+      <ul>
+        <li><a href="/mini/ff5-ap">必要AP量一覧表（SFC/GBA両対応）</a></li>
+      </ul>
+    </div>
+
+  </div>
+</BaseLayout>

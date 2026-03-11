@@ -1,0 +1,205 @@
+:root {
+  --bg:            #0f0f13;
+  --surface:       #1a1a24;
+  --surface-2:     #22222f;
+  --border:        #333345;
+  --text:          #e0e0e8;
+  --text-muted:    #888899;
+  --accent:        #9b72cf;
+  --accent-light:  #c4a7e7;
+  --red:           #cf8080;
+  --link:          #b08ad4;
+  --link-hover:    #d4b8f0;
+  --header-h:      3.5rem;
+  --content-w:     1100px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Meiryo', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* ── Header ─────────────────────────────── */
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.site-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-light);
+  white-space: nowrap;
+}
+.site-title:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+header nav a {
+  color: var(--text-muted);
+}
+header nav a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ── Main ────────────────────────────────── */
+
+main {
+  flex: 1;
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
+}
+
+/* ── Footer ──────────────────────────────── */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ── Section label ───────────────────────── */
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Game cards grid ─────────────────────── */
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.game-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.15s;
+}
+.game-card:hover {
+  border-color: var(--accent);
+}
+
+.game-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+.game-card h2 small {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.game-card ul {
+  list-style: none;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.game-card ul li::before {
+  content: '›';
+  color: var(--accent);
+  margin-right: 0.4em;
+}
+.game-card .wip {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ── Updates ─────────────────────────────── */
+
+.updates {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+}
+
+.updates table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.updates td {
+  padding: 0.3rem 0;
+  vertical-align: top;
+}
+.updates td:first-child {
+  white-space: nowrap;
+  color: var(--text-muted);
+  padding-right: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+.updates ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.updates li {
+  margin-bottom: 0.2rem;
+}

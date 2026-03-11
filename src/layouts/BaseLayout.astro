@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'CRADLE 2 GRAVE',
+  description = 'ゲーム系研究サイト。ジャンル・機種問わず面白いゲームを追い求めています。',
+} = Astro.props;
+
+const pageTitle = title === 'CRADLE 2 GRAVE' ? title : `${title} | CRADLE 2 GRAVE`;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a href="/" class="site-title">CRADLE 2 GRAVE</a>
+        <nav>
+          <a href="/info">インフォメーション</a>
+          <a href="/column">コラム</a>
+          <a href="https://u83-portal.web.app/" target="_blank" rel="noopener">ゆうやみポータル ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>CRADLE 2 GRAVE &mdash; ゆうやみ</p>
+    </footer>
+  </body>
+</html>
