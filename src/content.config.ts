@@ -18,4 +18,9 @@ const slayTheSpire = defineCollection({
   schema: gameContent,
 });
 
-export const collections = { civilization, slayTheSpire };
+const amongUs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/amongUs' }),
+  schema: gameContent,
+});
+
+export const collections = { civilization, slayTheSpire, amongUs };
