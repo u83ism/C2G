@@ -13,9 +13,14 @@ interface Props {
 }
 
 const { title, description, game, breadcrumb, headings = [] } = Astro.props;
+const filtered = headings.filter(h => h.depth <= 3);
 ---
 
 <BaseLayout title={title} description={description}>
+  {filtered.length > 1 && (
+    <TableOfContents slot="sidebar" headings={headings} />
+  )}
+
   <nav class="breadcrumb">
     <a href="/">TOP</a>
     {breadcrumb.map(({ label, href }) => (
@@ -32,8 +37,6 @@ const { title, description, game, breadcrumb, headings = [] } = Astro.props;
     <h1 class="page-title">{title}</h1>
     <div class="game-label">{game}</div>
   </div>
-
-  <TableOfContents headings={headings} />
 
   <article class="prose">
     <slot />

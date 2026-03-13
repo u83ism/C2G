@@ -90,14 +90,52 @@ header nav a:hover {
   text-decoration: none;
 }
 
-/* ── Main ────────────────────────────────── */
+/* ── Page outer / Main ───────────────────── */
 
-main {
+.page-outer {
   flex: 1;
+  width: 100%;
+}
+
+.page-outer:not(.has-sidebar) {
   max-width: var(--content-w);
   margin: 0 auto;
+}
+
+.page-outer.has-sidebar {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, var(--content-w)) 1fr;
+  align-items: start;
+}
+
+.page-outer.has-sidebar > .page-sidebar { grid-column: 1; }
+.page-outer.has-sidebar > main { grid-column: 2; }
+
+main {
   padding: 2rem 1.5rem;
-  width: 100%;
+  min-width: 0;
+}
+
+.page-sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 1rem);
+  max-height: calc(100dvh - var(--header-h) - 2rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  padding: 2rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-outer.has-sidebar {
+    display: block;
+  }
+  .page-sidebar {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    padding: 1.5rem 1.5rem 0;
+  }
 }
 
 /* ── Footer ──────────────────────────────── */

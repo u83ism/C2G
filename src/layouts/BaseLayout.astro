@@ -12,6 +12,7 @@ const {
 } = Astro.props;
 
 const pageTitle = title === 'CRADLE 2 GRAVE' ? title : `${title} | CRADLE 2 GRAVE`;
+const hasSidebar = Astro.slots.has('sidebar');
 ---
 
 <!doctype html>
@@ -36,9 +37,16 @@ const pageTitle = title === 'CRADLE 2 GRAVE' ? title : `${title} | CRADLE 2 GRAV
       </div>
     </header>
 
-    <main>
-      <slot />
-    </main>
+    <div class={`page-outer${hasSidebar ? ' has-sidebar' : ''}`}>
+      {hasSidebar && (
+        <aside class="page-sidebar">
+          <slot name="sidebar" />
+        </aside>
+      )}
+      <main>
+        <slot />
+      </main>
+    </div>
 
     <footer>
       <p>CRADLE 2 GRAVE &mdash; ゆうやみ</p>
