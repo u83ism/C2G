@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = await getCollection('column');
+const sorted = entries.sort((a, b) => a.id.localeCompare(b.id));
+---
+
+<BaseLayout title="コラム：ゲームの思い出" description="管理人が体験した印象深いゲームを振り返るコラム集。">
+  <div class="section-label">コラム：ゲームの思い出</div>
+  <div class="column-intro">
+    <p>今まで体験した中で印象深かったゲームについて振り返ってみます。題名どおり思い出話とか感想が中心になります。同年代（1980年代中盤生まれ）の方は特に楽しめるかと思います。</p>
+  </div>
+  <ul class="column-list">
+    {sorted.map(entry => (
+      <li>
+        <a href={`/column/${entry.id}`}>
+          <span class="column-title">{entry.data.title}</span>
+          <span class="column-game">{entry.data.game}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .column-intro {
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+    color: var(--color-text-muted);
+  }
+
+  .column-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .column-list li a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .column-list li a:hover {
+    background-color: var(--color-surface-hover, rgba(255,255,255,0.05));
+  }
+
+  .column-title {
+    color: var(--color-accent);
+    font-size: 0.95rem;
+  }
+
+  .column-game {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+</style>

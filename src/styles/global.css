@@ -203,7 +203,6 @@ footer {
 /* ── Prose (markdown content) ────────────── */
 
 .prose {
-  max-width: 860px;
   line-height: 1.8;
 }
 
