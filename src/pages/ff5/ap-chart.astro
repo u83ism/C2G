@@ -1,0 +1,115 @@
+---
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { sfcJobs, gbaJobs, computeTotal } from '../../data/ff5/jobs';
+
+const LEVELS = ['Lv1', 'Lv2', 'Lv3', 'Lv4', 'Lv5', 'Lv6', 'Lv7'] as const;
+
+const sfcTotal = sfcJobs.reduce((sum, j) => sum + computeTotal(j.ap), 0);
+const gbaTotal = gbaJobs.reduce((sum, j) => sum + computeTotal(j.ap), 0);
+---
+
+<MarkdownLayout
+  title="FF5 必要AP量一覧表（SFC/GBA両対応）"
+  description="FF5のジョブレベルアップに必要なAP量をSFC版・GBA版別に一覧化。育成計画の参考に。"
+  game="Final Fantasy V"
+  breadcrumb={[{ label: 'FF5', href: '/ff5' }]}
+>
+  <p>最近FF5をプレイしなおしたんですが、攻略サイトを見て回ってもジョブレベルを上げるのに必要なAP量の一覧表が見つからなかったので自作しました。今時SFC版だけってのもアレなのでGBA版も用意してみました。育成計画を建てる際にでも使ってください。</p>
+
+  <h2>SFC版</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ジョブ</th>
+          {LEVELS.map(lv => <th>{lv}</th>)}
+          <th class="total">合計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sfcJobs.map(job => (
+          <tr>
+            <td>{job.name}</td>
+            {job.ap.map(v => <td class="num">{v ?? '—'}</td>)}
+            <td class="num total">{computeTotal(job.ap)}</td>
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan={8}>総合計</th>
+          <th class="num total">{sfcTotal}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h2>GBA版</h2>
+  <p>GBA版では剣闘士・予言士・砲撃士・ネクロマンサーの4ジョブが追加されています。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ジョブ</th>
+          {LEVELS.map(lv => <th>{lv}</th>)}
+          <th class="total">合計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {gbaJobs.map(job => (
+          <tr>
+            <td>{job.name}</td>
+            {job.ap.map(v => <td class="num">{v ?? '—'}</td>)}
+            <td class="num total">{computeTotal(job.ap)}</td>
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan={8}>総合計</th>
+          <th class="num total">{gbaTotal}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</MarkdownLayout>
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 2rem;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 600px;
+}
+
+th, td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+thead th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  text-align: center;
+}
+
+tfoot th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.total {
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+</style>
