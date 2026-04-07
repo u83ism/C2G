@@ -1,0 +1,65 @@
+---
+import MarkdownLayout from '../layouts/MarkdownLayout.astro';
+import { scenarios, buildStars } from '../data/tropico/scenarios';
+---
+
+<MarkdownLayout
+  title="Tropico キャンペーン攻略メモ"
+  description="Tropico（PC/2001年）のキャンペーンシナリオ一覧と難易度まとめ。"
+  game="Tropico"
+  breadcrumb={[{ label: 'Tropico', href: '/tropico' }]}
+>
+  <p>すんませんまだ「故郷を夢見て」しかクリアできませんorz</p>
+  <p>というわけでシナリオ一覧と難易度表でも置いておきます。また難易度が全て言葉で表現されてるので、分かりやすいように5段階の星表記も併記しておきます。</p>
+  <p>なお当然のことですが、「パラダイスアイランド～」はパラダイスアイランドが必要ですので。</p>
+
+  <h2>シナリオ一覧</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>シナリオ名</th>
+          <th>難易度</th>
+          <th class="stars-col">★</th>
+          <th>カテゴリ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {scenarios.map(s => (
+          <tr>
+            <td class="nowrap">{s.name}</td>
+            <td class="nowrap">{s.difficulty}</td>
+            <td class="stars nowrap">{buildStars(s.stars)}</td>
+            <td class="nowrap">{s.category}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</MarkdownLayout>
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 2rem;
+}
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+th, td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+}
+thead th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  white-space: nowrap;
+}
+.nowrap { white-space: nowrap; }
+.stars-col { text-align: center; }
+.stars {
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+</style>

@@ -1,0 +1,130 @@
+---
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { stageExps, characterMasteries, inheritedCharacters, masteryTotal } from '../../data/bm/bmoo';
+
+const headings = [
+  { depth: 2, slug: 'stage-exp',  text: '各戦闘取得経験値' },
+  { depth: 2, slug: 'char-exp',   text: '各キャラクターのスキルマスターに必要な経験値' },
+];
+---
+
+<MarkdownLayout
+  title="BLACK/MATRIX OO 自動系スキル修得考察"
+  description="B/MOOの各ステージ取得経験値と、キャラクター別スキルマスターに必要な経験値の一覧。"
+  game="BLACK/MATRIX OO"
+  breadcrumb={[{ label: 'BLACK/MATRIX', href: '/bm/bmoo-exp' }]}
+  headings={headings}
+>
+  <p>B/MOOで大きく変わった点の一つとしてスキル制度が導入されたことです。特に各キャラクターの個性の一つである自動系スキルは、レベルアップでしか手に入れられず、さらに<strong>「レベルは次の周回に持ち越せない」</strong>ため、効率良くマスターするためには<strong>「どのキャラクターに自動系スキルを全取得させるか、プレイ前にはっきり決めておく」</strong>ことが要求されます。</p>
+  <p>自動系スキル修得に役に立ちそうなデータを表にしました。育成計画を作る際に御活用下さい。</p>
+
+  <h2 id="stage-exp">各戦闘取得経験値</h2>
+  <p>「総合計」列は1-3から当該ステージまでの累積獲得経験値です。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ステージ</th>
+          <th class="num">基本EXP</th>
+          <th class="num">ボーナス</th>
+          <th class="num total">累積合計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {stageExps.map(s => (
+          <tr>
+            <td class="nowrap">{s.stage}</td>
+            <td class="num">{s.baseExp.toLocaleString()}</td>
+            <td class="num">{s.bonus.toLocaleString()}</td>
+            <td class="num total">{s.runningTotal.toLocaleString()}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="char-exp">各キャラクターのスキルマスターに必要な経験値</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>キャラ名</th>
+          <th class="num">育成開始Lv</th>
+          <th class="num">スキルマスターLv</th>
+          <th class="num">必要経験値</th>
+        </tr>
+      </thead>
+      <tbody>
+        {characterMasteries.map(c => (
+          <tr>
+            <td class="nowrap">{c.name}</td>
+            <td class="num">{c.startLevel}</td>
+            <td class="num">{c.masterLevel}</td>
+            <td class="num">{c.requiredExp.toLocaleString()}</td>
+          </tr>
+        ))}
+        <tr class="total-row">
+          <th colspan={3}>合計</th>
+          <th class="num">{masteryTotal.toLocaleString()}</th>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan={4} class="note">継承ありのキャラ（継承前のキャラを育てていれば育成不要）</td>
+        </tr>
+        {inheritedCharacters.map(c => (
+          <tr>
+            <td class="nowrap">{c.name}</td>
+            <td class="num">{c.startLevel}</td>
+            <td class="num">{c.masterLevel}</td>
+            <td class="num">{c.requiredExp.toLocaleString()}</td>
+          </tr>
+        ))}
+      </tfoot>
+    </table>
+  </div>
+
+  <p>ポイントだけ見ると2周＋αといった感じですが、1周目は上げられるレベルに制限がかかっているため、無難に3～4周かけるのをお薦めします。</p>
+</MarkdownLayout>
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 2rem;
+}
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+th, td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+thead th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  text-align: center;
+}
+tfoot td, tfoot tr td {
+  background: var(--surface-2, var(--surface));
+}
+.total-row th {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  font-weight: 600;
+}
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.total {
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.nowrap { white-space: nowrap; }
+.note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+</style>

@@ -1,0 +1,82 @@
+---
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { weaponMasteries, grandTotal, LEVELS } from '../../data/bm/bm2';
+---
+
+<MarkdownLayout
+  title="BLACK/MATRIX 2 武器熟練度考察"
+  description="B/M2の全武器種類マスターに必要なポイント数を一覧化。周回計画の参考に。"
+  game="BLACK/MATRIX 2"
+  breadcrumb={[{ label: 'BLACK/MATRIX', href: '/bm/bm2-wp' }]}
+>
+  <p>超アイテム収集作業＆周回ゲーであるB/M2。全アイテム回収するためには、少なくても十数周しなければならないという恐ろしい仕様です。</p>
+  <p>しかしそれ以外にも周回作業の中でやるべきことはあります。それが今回この表を上げるきっかけとなった<strong>「全武器種類マスター」</strong>。全武器の熟練度をLv9にするためには一体どれだけ手間がかかるのか調べてみました。</p>
+
+  <h2>武器熟練度必要ポイント表</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>武器種類</th>
+          {LEVELS.map(lv => <th>{lv}</th>)}
+          <th class="total">合計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {weaponMasteries.map(w => (
+          <tr>
+            <td class="nowrap">{w.weapon}</td>
+            {w.lv.map(v => <td class="num">{v}</td>)}
+            <td class="num total">{w.total}</td>
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan={9}>総合計</th>
+          <th class="num total">{grandTotal}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <p>マスターするには合計{grandTotal}ポイントということですが、さらにここから別の要素が加わります。</p>
+  <p>まず初めて戦闘に参加したキャラクターは<strong>「技熟練度ポイントを100ポイント分上げる」（2周目以降）</strong>か、<strong>「隣接する武器種類を解禁する」</strong>のどちらかを選べます。初期で使える武器は1種類なので他6種類はこの手段で解禁するしかありません。この時点で1人あたり6周が確定します。</p>
+  <p>ただ全解禁してあれば敵死亡→ポーション復活ループなり使って、1周でマスターすることも可能です。理論上ですし、とんでもない手間がかかりますが。普通にやってたら主力級キャラでも1周でせいぜい300ポイント程度ですからね。精神的にもかなり苦行ですんで、やっぱり「周回ボーナス＋戦闘でポイント調整」で済ませるのがベターじゃないかと思います。</p>
+  <p>それと仲間になるキャラクターには最初からある程度、武器熟練度高い状態で仲間になるのもいます。というよりそっちの方が多いので、最悪で{grandTotal}ポイントとお考え下さい。とはいえ軽減されるのはせいぜい200ポイントそこらというところなんですが。</p>
+  <p>問題なのは、仲間にならないキャラが周回ボーナスを得ることができないという点。特にルート限定のサファエル・リディエール等は極端に育てる機会が少なくなりがちです。システム上、戦闘にはほとんど参加せず周回ボーナスだけで上げていくキャラクターの方が多いことも合わせて考えて、<strong>全キャラクター・全武器種類マスターまで達成しようとすると30周～40周は必要</strong>と思われます。</p>
+</MarkdownLayout>
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 2rem;
+}
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+th, td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+thead th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  text-align: center;
+}
+tfoot th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+}
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.total {
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.nowrap { white-space: nowrap; }
+</style>
