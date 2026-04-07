@@ -4,3 +4,133 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/wildarms/about.htm"
+  to = "/wildarms/about"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/story.htm"
+  to = "/wildarms/story"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/eventdeta.htm"
+  to = "/wildarms/eventdeta"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/mame.htm"
+  to = "/wildarms/mame"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/secret.htm"
+  to = "/wildarms/secret"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/urawaza.htm"
+  to = "/wildarms/urawaza"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/walksea.htm"
+  to = "/wildarms/walksea"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/item.htm"
+  to = "/wildarms/item"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/s-rody.htm"
+  to = "/wildarms/s-rody"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/s-zack.htm"
+  to = "/wildarms/s-zack"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/s-cecilia.htm"
+  to = "/wildarms/s-cecilia"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/s-graph.htm"
+  to = "/wildarms/s-graph"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/b-rody.htm"
+  to = "/wildarms/b-rody"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/b-zack.htm"
+  to = "/wildarms/b-zack"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/b-cecilia.htm"
+  to = "/wildarms/b-cecilia"
+  status = 301
+
+[[redirects]]
+  from = "/wildarms/b-guardian.htm"
+  to = "/wildarms/b-guardian"
+  status = 301
+
+[[redirects]]
+  from = "/bm/bm2-wp.htm"
+  to = "/bm/bm2-wp"
+  status = 301
+
+[[redirects]]
+  from = "/bm/bmoo-exp.htm"
+  to = "/bm/bmoo-exp"
+  status = 301
+
+[[redirects]]
+  from = "/mini/highway.htm"
+  to = "/highway/guide"
+  status = 301
+
+[[redirects]]
+  from = "/mini/ssx.htm"
+  to = "/ssx/guide"
+  status = 301
+
+[[redirects]]
+  from = "/mini/ff5-ap.htm"
+  to = "/ff5/ap-chart"
+  status = 301
+
+[[redirects]]
+  from = "/mini/among-us-2024.md"
+  to = "/among-us/among-us-2024"
+  status = 301
+
+[[redirects]]
+  from = "/column.htm"
+  to = "/column"
+  status = 301
+
+[[redirects]]
+  from = "/info.htm"
+  to = "/info"
+  status = 301
+
+[[redirects]]
+  from = "/tropico/cp.htm"
+  to = "/tropico"
+  status = 301
+
+[[redirects]]
+  from = "/r18/hana-takeda.htm"
+  to = "/r18/hana-takeda"
+  status = 301
