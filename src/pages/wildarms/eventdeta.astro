@@ -1,0 +1,244 @@
+---
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+
+const headings = [
+  { depth: 2, slug: 'expo',     text: '古代文明博覧会' },
+  { depth: 3, slug: 'circuit',  text: 'タイムトライアルサーキット' },
+  { depth: 3, slug: 'mogura',   text: 'モグモグキャッチャー' },
+  { depth: 3, slug: 'chicken',  text: '激突ドキドキチキンレース' },
+  { depth: 3, slug: 'strike',   text: 'ストライクボール' },
+  { depth: 2, slug: 'rescue',   text: 'アーデルハイドレスキューイベント' },
+  { depth: 2, slug: 'rebuild',  text: 'アーデルハイド復興イベント' },
+  { depth: 2, slug: 'wedding',  text: '偽装結婚式イベント' },
+];
+---
+
+<MarkdownLayout
+  title="ワイルドアームズ ミニゲーム・イベントデータ"
+  description="ワイルドアームズ（PS1）の古代文明博覧会ミニゲーム・アーデルハイドレスキュー・復興イベント・偽装結婚式の詳細データ。"
+  game="ワイルドアームズ（無印）"
+  breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
+  headings={headings}
+>
+  <p>各種イベントやミニゲームの解説をしています。</p>
+
+  <h2 id="expo">古代文明博覧会</h2>
+  <p>序盤の大きな節目である古代文明博覧会。リリティアの棺クリア後に開始されます。いくつかミニゲームが用意されており、かなり良い景品が揃っているので、ここで稼いでおくと後がグッと楽になります。</p>
+
+  <h3 id="circuit">タイムトライアルサーキット（参加料：無料）</h3>
+  <p>参加料が無料なため、商品はありません。曲がりくねったコースをひたすら走りまくるミニゲームです。小数点以下一桁まで測定され、タイムによりベスト5までランキングされます。</p>
+  <p>「<strong>壁に対して斜めの態勢になるように入力しながら突っ込むと、自動的に壁沿い走りを行い、壁が途切れたら入力していた斜め方向へ走る</strong>」という法則を上手く利用するのがコツです。</p>
+
+  <h3 id="mogura">モグモグキャッチャー（参加料：100ギャラ）</h3>
+  <p>2匹のモグラがランダムな場所に頭を出したり引っ込めたりするので、隣接して○ボタンで引き抜いて、○ボタンで投げ捨てていくゲーム。制限時間は30秒。引き抜き→投げ捨ての動作は素早く行いましょう。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>つかまえたモグラの数</th><th>商品</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>16匹以上</td><td class="prize">ネクタール</td></tr>
+        <tr><td>15匹</td><td class="prize">わんりょくアップル</td></tr>
+        <tr><td>14匹</td><td class="prize">まりょくアップル</td></tr>
+        <tr><td>13匹</td><td class="prize">はんのうアップル</td></tr>
+        <tr><td>12匹</td><td class="prize">たいりょくアップル</td></tr>
+        <tr><td>11匹</td><td class="prize">バレットチャージ</td></tr>
+        <tr><td>10匹</td><td class="prize">フル・リヴァイブ</td></tr>
+        <tr><td>9匹</td><td>マジックキャロット</td></tr>
+        <tr><td>8匹</td><td>リヴァイブフルーツ</td></tr>
+        <tr><td>7匹</td><td>アンチドーテ</td></tr>
+        <tr><td>6匹</td><td>ヒールベリー</td></tr>
+        <tr><td>5匹以下</td><td>商品なし</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>つかまえるモグラの数を調節することでお望みの商品が手に入ります。ここで全財産をつぎ込んでアップルでドーピングすることにより、序盤が恐ろしく楽になります。</p>
+
+  <h3 id="chicken">激突ドキドキチキンレース（参加料：100ギャラ）</h3>
+  <p>キャラが自動的に走り出すので、壁までに○ボタンを押して、壁の直前でストップさせるミニゲームです。○ボタンを押しても慣性で少し走ってしまうので、狙った商品を取るには少々慣れが必要です。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>壁との距離</th><th>商品</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1番（7ドット以下）</td><td>マジックキャロット</td></tr>
+        <tr><td>2番（15ドット以下）</td><td class="prize">ポーションベリー</td></tr>
+        <tr><td>3番（23ドット以下）</td><td>アンチドーテ</td></tr>
+        <tr><td>4番（31ドット以下）</td><td>ヒールベリー（残念賞）</td></tr>
+        <tr><td>それ以上</td><td>何もなし</td></tr>
+        <tr><td>激突</td><td>何もなし</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>一番商品がショボいミニゲームです。あえて一押しするならポーションベリーで。後半ではブラックマーケットで買えますが、序盤にあると結構楽だと思います。</p>
+
+  <h3 id="strike">ストライクボール（参加料：30ギャラ）</h3>
+  <p>○ボタンでボールを持ち上げ、○ボタンでボールを投げるミニゲーム。ボールはランダムで跳ねますので、かなり運による要素が強いものとなっています。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>ボールの止まった場所</th><th>商品</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>大当たり（白色内円/中心）</td><td class="prize">ひでんのしょ</td></tr>
+        <tr><td>中当たり（青色内円/1層目）</td><td class="prize">バレットチャージ</td></tr>
+        <tr><td>小当たり（白色外円/2層目）</td><td>リヴァイブフルーツ</td></tr>
+        <tr><td>残念賞（青色外円/3層目）</td><td>ヒールベリー</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>1回30ギャラと格安な上に商品も中々良いので、やりまくる価値は十二分にあります。</p>
+
+  <h2 id="rescue">アーデルハイドレスキューイベント</h2>
+  <p>古代文明博覧会からの続きのイベントです。アーデルハイドの街にいる人々に話しかけて救助していくイベントで、一連の流れが終わった後、城の会議室にて救助した人々からアイテムが贈られます。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>助けた住民</th><th>貰えるアイテム</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>教会のシスター</td><td>マジックキャロット</td></tr>
+        <tr><td>宿屋2階のおかみさん</td><td class="prize">ミサンガ</td></tr>
+        <tr><td>パブの酔っぱらい</td><td>500ギャラ</td></tr>
+        <tr><td>病院の患者のおじさん</td><td class="prize">ラッキーカード</td></tr>
+        <tr><td>森に隠れている少年</td><td class="prize">わんりょくアップル</td></tr>
+        <tr><td>恐妻家のダンナ</td><td>リヴァイブフルーツ</td></tr>
+        <tr><td>墓場付近のおばあさん</td><td>100ギャラ</td></tr>
+        <tr><td>エマ宅裏のおばさん</td><td class="prize">1000ギャラ</td></tr>
+        <tr><td>神像付近のおじいさん</td><td class="prize">バレットチャージ</td></tr>
+        <tr><td>倉庫に隠れるおじさん</td><td class="prize">まりょくアップル</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>このイベント中はアーデルハイドの街内でも戦闘が発生するので、面倒だという方は太字（優良アイテム）を貰える人々だけ救出するのもアリです。</p>
+
+  <h2 id="rebuild">アーデルハイド復興イベント</h2>
+  <p>今作で最も巨大、最も長期となるイベント。魔族襲撃という序盤から始まり、終了がラスダン直前という長さです。復興委員会に寄付金を渡すことによって、人がどんどん出現してアーデルハイドが栄えるようになります。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>進行条件</th><th>寄付金額</th><th>累計金額</th><th>出現する人々と起こるイベント</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="5">国葬イベント後</td>
+          <td rowspan="3">500ギャラ</td>
+          <td rowspan="3">500ギャラ</td>
+          <td>入口にお兄さんが出現</td>
+        </tr>
+        <tr><td>中央広場におばさんが出現</td></tr>
+        <tr><td>宿屋におじさんが出現し、<strong>宿屋が営業再開する</strong>（レスキューイベント時に宿屋のおかみさんを助けていない場合）</td></tr>
+        <tr><td>1000ギャラ</td><td>1500ギャラ</td><td>酒場におじさんが出現</td></tr>
+        <tr><td>2000ギャラ</td><td>3500ギャラ</td><td>中央広場におばさんが出現</td></tr>
+        <tr>
+          <td rowspan="4">船入手後</td>
+          <td rowspan="2">3000ギャラ</td>
+          <td rowspan="2">6500ギャラ</td>
+          <td>入口付近におじいさんが出現</td>
+        </tr>
+        <tr><td>城の入口付近におばあさんが出現</td></tr>
+        <tr><td>5000ギャラ</td><td>11500ギャラ</td><td>中央通り（エマの家の左あたり）に男の子が出現</td></tr>
+        <tr><td>10000ギャラ</td><td>21500ギャラ</td><td>北西の水飲み場に渡り鳥が出現</td></tr>
+        <tr><td>フォトスフィア攻略後</td><td>20000ギャラ</td><td>41500ギャラ</td><td>酒場に踊り子が3人出現</td></tr>
+        <tr>
+          <td rowspan="5">パンデモニウム攻略後</td>
+          <td rowspan="3">30000ギャラ</td>
+          <td rowspan="3">71500ギャラ</td>
+          <td>町長の家の南西にある家にお姉さんが出現</td>
+        </tr>
+        <tr><td>新しく建てられた家（北東）にドレック元船長が出現し、<strong>再び船を入手できる</strong>（→再び航海可/隠しボス・リヴァイアサンとバトル可）</td></tr>
+        <tr><td>新しく建てられた家（北西）に女の子が出現</td></tr>
+        <tr><td rowspan="2">50000ギャラ</td><td rowspan="2">121500ギャラ</td><td>新しく建てられた家（南東）にお姉さんが出現</td></tr>
+        <tr><td>新しく建てられた家（南西）に男の子が出現</td></tr>
+        <tr><td>アークティカ城攻略後</td><td>100000ギャラ</td><td>221500ギャラ</td><td>酒場に渡り鳥が出現し、<strong>「ディスペラード」を入手できる</strong>（→夢幻宮へ入れるようになる）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>基本的には寄付しても人が増えるだけなので進めるのが大変です。後半になってからまとめて起こすのがベストかと思います。</p>
+
+  <p>以下は町の修復状況の進行表です。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>進行条件</th><th>変化の内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>魔族襲撃後</td><td>町全体が壊された状態に変化する</td></tr>
+        <tr><td>船入手後</td><td>家の床と外壁、地面が修理された状態に変化する</td></tr>
+        <tr><td>フォトスフィア攻略後</td><td>家が修理された状態に変化する</td></tr>
+        <tr><td>パンデモニウム攻略後</td><td>町の北東にあった林がなくなり家が増築される。また、家の外壁の模様が変化する</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="wedding">偽装結婚式イベント</h2>
+  <p>壊死の迷宮クリア後に、偽装結婚式イベントがあります。全部で10の質問をされるのですが、正解数に伴いイベント後にアイテムをもらうことができます。なお、グッズのマジックスタッフは正解数がいくつであっても、もらうことができます。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>問題番号</th><th>正解</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>新婦から進み出る</td></tr>
+        <tr><td>2</td><td>オリビア・クレアー</td></tr>
+        <tr><td>3</td><td>バーソロミュー</td></tr>
+        <tr><td>4</td><td>スイートキャンディ号</td></tr>
+        <tr><td>5</td><td>古い月</td></tr>
+        <tr><td>6</td><td>右手を掲げる</td></tr>
+        <tr><td>7</td><td>すいしょうのはな</td></tr>
+        <tr><td>8</td><td>8問め</td></tr>
+        <tr><td>9</td><td>ルカーディア</td></tr>
+        <tr><td>10</td><td>どちらでも正解</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>正解数</th><th>貰えるアイテム</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1問</td><td>100ギャラ＋ヒールベリー</td></tr>
+        <tr><td>2問</td><td>200ギャラ＋ヒールベリー</td></tr>
+        <tr><td>3問</td><td>300ギャラ＋ヒールベリー</td></tr>
+        <tr><td>4問</td><td>400ギャラ＋ポーションベリー</td></tr>
+        <tr><td>5問</td><td>500ギャラ＋ポーションベリー</td></tr>
+        <tr><td>6問</td><td>1000ギャラ＋ポーションベリー</td></tr>
+        <tr><td>7問</td><td>2000ギャラ＋ミラクルベリー＋リヴァイブフルーツ</td></tr>
+        <tr><td>8問</td><td>3000ギャラ＋ミラクルベリー＋リヴァイブフルーツ</td></tr>
+        <tr><td>9問</td><td>4000ギャラ＋ミラクルベリー＋リヴァイブフルーツ</td></tr>
+        <tr><td>全問</td><td class="prize">5000ギャラ＋ミラクルベリー＋フル・リヴァイブ</td></tr>
+      </tbody>
+    </table>
+  </div>
+</MarkdownLayout>
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  width: 100%;
+}
+th, td {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+  vertical-align: middle;
+}
+th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  white-space: nowrap;
+}
+.prize {
+  color: var(--accent);
+  font-weight: 600;
+}
+</style>

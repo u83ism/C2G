@@ -1,0 +1,121 @@
+---
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { consumables, equipments } from '../../data/wildarms/items';
+
+const headings = [
+  { depth: 2, slug: 'consumable', text: '消耗品' },
+  { depth: 2, slug: 'equipment',  text: '装備品' },
+];
+
+// Group consumables by item name to render rowspan-style
+type Group = { item: string; entries: typeof consumables };
+const consumableGroups: Group[] = [];
+for (const entry of consumables) {
+  const last = consumableGroups.at(-1);
+  if (last && last.item === entry.item) {
+    last.entries = [...last.entries, entry];
+  } else {
+    consumableGroups.push({ item: entry.item, entries: [entry] });
+  }
+}
+---
+
+<MarkdownLayout
+  title="ワイルドアームズ 盗める・落とすアイテムリスト"
+  description="ワイルドアームズ（PS1）でトリックスターで盗んだり、倒して落とすアイテムの一覧。消耗品・装備品に分けて掲載。"
+  game="ワイルドアームズ（無印）"
+  breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
+  headings={headings}
+>
+  <p>ザックの早撃ち「トリックスター」で盗んだり、倒すことで落とすアイテムの中から、要チェックなものをリストアップしました。対象は雑魚モンスター（古代の闘技場含む）のみで、ボスは含まれません。</p>
+
+  <h2 id="consumable">消耗品</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>入手できるアイテム</th>
+          <th>名前</th>
+          <th>出現場所</th>
+          <th>入手確率</th>
+        </tr>
+      </thead>
+      <tbody>
+        {consumableGroups.map((group) =>
+          group.entries.map((entry, i) => (
+            <tr>
+              {i === 0 && (
+                <td rowspan={group.entries.length} class="item-name">{group.item}</td>
+              )}
+              <td>（{entry.method}）{entry.enemy}</td>
+              <td>{entry.location}</td>
+              <td class="rate">{entry.rate}</td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table>
+  </div>
+
+  <p>消耗品については、<strong>バレットチャージ・アンブロシア・ミラクルベリー・フルリヴァイブは、敵から盗んだり落とさせたりして入手するのが一番効率良い</strong>です。しかし<strong>ネクタールやひでんのしょ、各種アップル系に関しては古代の闘技場で稼いだ方が効率が良い</strong>ようです。</p>
+
+  <h2 id="equipment">装備品</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>出現場所</th>
+          <th>アイテム</th>
+          <th>確率</th>
+        </tr>
+      </thead>
+      <tbody>
+        {equipments.map((entry) => (
+          <tr>
+            <td>{entry.enemy}</td>
+            <td>{entry.location}</td>
+            <td class={entry.rare ? 'rare' : ''}>（{entry.method}）{entry.item}</td>
+            <td class="rate">{entry.rate}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p>装備品については、盗むか落とす以外で入手できないネクロノミコンやバッジに注目しましょう。特に<strong>ネクロノミコンはデ・レ・メタリカ内だけでしか入手できないので注意。</strong>なおディープワンズの確率が？％になっていますが、手持ちの資料にはこう掲載されています。</p>
+</MarkdownLayout>
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  width: 100%;
+}
+th, td {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+  vertical-align: middle;
+}
+th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  white-space: nowrap;
+}
+.item-name {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.rate {
+  white-space: nowrap;
+  text-align: right;
+}
+.rare {
+  color: var(--accent);
+  font-weight: 600;
+}
+</style>
