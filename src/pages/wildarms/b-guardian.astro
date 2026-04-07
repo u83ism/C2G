@@ -1,0 +1,224 @@
+---
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+
+const headings = [
+  { depth: 2, slug: 'plate',    text: 'ガーディアンプレート装備によるステータス上昇' },
+  { depth: 2, slug: 'material', text: 'マテリアル＆ハイ・マテリアルの効果' },
+];
+
+type PlateRow = {
+  readonly name: string;
+  readonly str: number | null;
+  readonly vit: number | null;
+  readonly sor: number | null;
+  readonly res: number | null;
+};
+
+const plates: readonly PlateRow[] = [
+  { name: 'みずのささやき（シトゥルダーク）',    str: null, vit: null, sor: 10,   res: null },
+  { name: 'だいちのうなり（グルジエフ）',         str: null, vit: 10,   sor: null, res: null },
+  { name: 'れっかのいかり（ムア・ガルド）',        str: 10,   vit: null, sor: null, res: null },
+  { name: 'しっぷうのつめ（フェンガロン）',        str: null, vit: null, sor: null, res: 10   },
+  { name: 'やまのひびき（ディノギノス）',          str: null, vit: 20,   sor: null, res: null },
+  { name: 'せいじゃのかなしみ（イオニ・パウアー）', str: 20,  vit: null, sor: null, res: null },
+  { name: 'しのせっぷん（ギィ・ラムトス）',        str: null, vit: null, sor: 30,   res: null },
+  { name: 'らいめいのきば（ヌア・シャックス）',    str: null, vit: null, sor: null, res: 20   },
+  { name: 'せんこうのいちげき（ステア・ロウ）',    str: 10,   vit: 10,   sor: null, res: 10   },
+  { name: 'わだつみのこころ（ルカーディア）',       str: null, vit: 20,   sor: 20,   res: null },
+  { name: 'てんのさばき（ソラス・エムス）',         str: 10,   vit: null, sor: 20,   res: 10   },
+  { name: 'ゆきのけっしょう（アルスレート）',       str: 20,   vit: 10,   sor: null, res: 10   },
+  { name: 'ほしのかがやき（リグドブライト）',       str: 10,   vit: 10,   sor: 10,   res: 10   },
+  { name: 'いのちのほのお（オードリューク）',       str: 20,   vit: 20,   sor: null, res: null },
+  { name: 'まかいのよびごえ（ドラス・ドラム）',    str: null, vit: null, sor: 40,   res: null },
+  { name: 'つるぎのまい（エクイテス）',            str: 40,   vit: null, sor: null, res: null },
+  { name: 'じょうさいのまもり（ゼルテュークス）',  str: null, vit: 40,   sor: null, res: null },
+  { name: 'ときのはぐるま（ダン・ダイラム）',       str: null, vit: null, sor: 50,   res: null },
+  { name: 'あいのきせき（ラフティーナ）',           str: 5,    vit: 20,   sor: 30,   res: 5    },
+  { name: 'ゆうきのもんしょう（ジャスティーン）',  str: 20,   vit: 10,   sor: null, res: 30   },
+  { name: 'きぼうのかけら（ゼファー）',             str: 20,   vit: 20,   sor: 10,   res: 10   },
+];
+
+type MaterialRow = {
+  readonly name: string;
+  readonly element: string;
+  readonly material: string;
+  readonly hiMaterial: string;
+};
+
+const materials: readonly MaterialRow[] = [
+  { name: 'みずのささやき（シトゥルダーク）',    element: '水', material: '×8',    hiMaterial: '×20' },
+  { name: 'だいちのうなり（グルジエフ）',         element: '地', material: '×8',    hiMaterial: '×20' },
+  { name: 'れっかのいかり（ムア・ガルド）',        element: '火', material: '×8',    hiMaterial: '×20' },
+  { name: 'しっぷうのつめ（フェンガロン）',        element: '風', material: '×8',    hiMaterial: '×20' },
+  { name: 'やまのひびき（ディノギノス）',          element: '地', material: '×10',   hiMaterial: '×20' },
+  { name: 'せいじゃのかなしみ（イオニ・パウアー）', element: '聖', material: '×10',  hiMaterial: '×20' },
+  { name: 'しのせっぷん（ギィ・ラムトス）',        element: '無', material: '即死攻撃（50%）', hiMaterial: '即死攻撃（99%）' },
+  { name: 'らいめいのきば（ヌア・シャックス）',    element: '雷', material: '×10',   hiMaterial: '×20' },
+  { name: 'せんこうのいちげき（ステア・ロウ）',    element: '無', material: '×12',   hiMaterial: '×20' },
+  { name: 'わだつみのこころ（ルカーディア）',       element: '水', material: '×14',   hiMaterial: '×22' },
+  { name: 'てんのさばき（ソラス・エムス）',         element: '聖', material: '×16',   hiMaterial: '×22' },
+  { name: 'ゆきのけっしょう（アルスレート）',       element: '水', material: '×16',   hiMaterial: '×22' },
+  { name: 'ほしのかがやき（リグドブライト）',       element: '無', material: '×16',   hiMaterial: '×22' },
+  { name: 'いのちのほのお（オードリューク）',       element: '無', material: '味方全員：ステータス異常回復（戦闘不能×）＆HP回復（×10）', hiMaterial: '味方全員：ステータス異常回復（戦闘不能○）＆HP回復（×15）' },
+  { name: 'まかいのよびごえ（ドラス・ドラム）',    element: '魔', material: '×18',   hiMaterial: '×25' },
+  { name: 'つるぎのまい（エクイテス）',            element: '風', material: '×20',   hiMaterial: '×30' },
+  { name: 'じょうさいのまもり（ゼルテュークス）',  element: '無', material: '味方全員：防御力25%上昇・全属性半減', hiMaterial: '味方全員：防御力50%上昇＆全属性無効' },
+  { name: 'ときのはぐるま（ダン・ダイラム）',       element: '無', material: '×25',   hiMaterial: '×50' },
+  { name: 'あいのきせき（ラフティーナ）',           element: '無', material: '味方全員：HP回復（×15）', hiMaterial: '敵：ダメージ（×15）＆アンデッド消滅 / 味方全員：HP回復（×15）' },
+  { name: 'ゆうきのもんしょう（ジャスティーン）',  element: '全', material: '×30',   hiMaterial: '×60' },
+  { name: 'きぼうのかけら（ゼファー）',             element: '無', material: '×30',   hiMaterial: '×60' },
+];
+
+const fmt = (v: number | null): string => v === null ? '-' : String(v);
+---
+
+<MarkdownLayout
+  title="ワイルドアームズ ガーディアン関連研究"
+  description="ワイルドアームズ（PS1）のガーディアンプレート装備によるステータス上昇率と、マテリアル・ハイマテリアルの効果一覧。"
+  game="ワイルドアームズ（無印）"
+  breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
+  headings={headings}
+>
+  <p>WA1といえば多すぎるガーディアン。2以降でかなり減ってしまうぐらいですから……それはともかく、戦闘面から見たガーディアンの意義とは、<strong>プレート装備によるステータス上昇・マテリアル＆ハイ・マテリアルの効果</strong>この2点に集約されます。</p>
+
+  <h2 id="plate">ガーディアンプレート装備によるステータス上昇</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>Str(%)</th>
+          <th>VIT(%)</th>
+          <th>SOR(%)</th>
+          <th>RES(%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {plates.map((p) => (
+          <tr>
+            <td>{p.name}</td>
+            <td class="num">{fmt(p.str)}</td>
+            <td class="num">{fmt(p.vit)}</td>
+            <td class="num">{fmt(p.sor)}</td>
+            <td class="num">{fmt(p.res)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p>上記の表から見えてくるポイント：</p>
+  <ol>
+    <li>現在の数値を元に%単位で上昇するため、高いパラメータを伸ばした方が効果が高い。</li>
+    <li>ステータス上昇は何種類かに分類でき、キャラの向き不向きがある。</li>
+    <li>バランス型グループは使いどころを考えて運用する。</li>
+    <li>終盤に手に入る「つるぎのまい」「じょうさいのまもり」「ときのはぐるま」は1ステータスに特化しており、ガーディアンロード以上の効果を持つ。</li>
+  </ol>
+
+  <p>%なので高いパラメータを伸ばすのは言わずもがな。ロディならStr・VIT、ザックならStr・RES、セシリアならSOR重視で上げていけば確実でしょう。各プレートのグループ分けは以下の通りです。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>グループ</th><th>プレート</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>バランス型</td>
+          <td>せんこうのいちげき（ステア・ロウ）、てんのさばき（ソラス・エムス）、ゆきのけっしょう（アルスレート）、ほしのかがやき（リグドブライト）、きぼうのかけら（ゼファー）</td>
+        </tr>
+        <tr>
+          <td>Str＆ATP重視型（ロディ・ザック向け）</td>
+          <td>れっかのいかり（ムア・ガルド）、せいじゃのかなしみ（イオニ・パウアー）、つるぎのまい（エクイテス）</td>
+        </tr>
+        <tr>
+          <td>VIT＆DFP重視型（ロディ向け）</td>
+          <td>だいちのうなり（グルジエフ）、やまのひびき（ディノギノス）、じょうさいのまもり（ゼルテュークス）</td>
+        </tr>
+        <tr>
+          <td>SOR＆MGR重視型（セシリア向け）</td>
+          <td>みずのささやき（シトゥルダーク）、しのせっぷん（ギィ・ラムトス）、まかいのよびごえ（ドラス・ドラム）、ときのはぐるま（ダン・ダイラム）</td>
+        </tr>
+        <tr>
+          <td>RES＆PRY重視型（ザック向け）</td>
+          <td>しっぷうのつめ（フェンガロン）、らいめいのきば（ヌア・シャックス）</td>
+        </tr>
+        <tr>
+          <td>変則型</td>
+          <td>わだつみのこころ（ルカーディア）、いのちのほのお（オードリューク）、あいのきせき（ラフティーナ）、ゆうきのもんしょう（ジャスティーン）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>バランス型は、ロディのSORやセシリアのStr等、上げる必要の無いステータスまで上がるため、あまりオススメできません。全部出揃ったらあまり必要ではないかと思います。終盤に手に入る「つるぎのまい」「じょうさいのまもり」「ときのはぐるま」は結構見落とされがちですが、上昇するステータスは見たとおりなので、普段はこれらを装着し、必要時は随時取り替えるというのがベストなスタイルかと思います。</p>
+
+  <h2 id="material">マテリアル＆ハイ・マテリアルの効果</h2>
+
+  <p>攻撃力の数値はSOR（魔力）に対する倍率です。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>属性</th>
+          <th>マテリアル</th>
+          <th>ハイ・マテリアル</th>
+        </tr>
+      </thead>
+      <tbody>
+        {materials.map((m) => (
+          <tr>
+            <td class="guardian-name">{m.name}</td>
+            <td class="num">{m.element}</td>
+            <td>{m.material}</td>
+            <td>{m.hiMaterial}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p>マテリアル＆ハイ・マテリアルのポイント：</p>
+  <ol>
+    <li>入手順で見ると、ハイ・マテリアルは後半に入手する物になるほど威力が急激に上がる。</li>
+    <li>「まかいのよびごえ」「ときのはぐるま」のSOR上昇率に注目。ガーディアンの威力に関する要素は<strong>属性・ガーディアンの威力・SOR上昇率</strong>で、最終的にはSOR上昇率が高く、威力もそこそこある「まかいのよびごえ」や「ときのはぐるま」が非常に使えます。</li>
+    <li>「いのちのほのお」と「あいのきせき」の違いに注目：
+      <ul>
+        <li>「いのちのほのお」：マテリアルでステータス異常も回復できる、ハイマテリアルで戦闘不能も復活可能。</li>
+        <li>「あいのきせき」：マテリアルでオードリュークより回復量が多い、ハイマテリアルで敵に攻撃しつつ回復＆アンデッド消滅。</li>
+      </ul>
+    </li>
+    <li>「じょうさいのまもり」は地味だがかなり使える。マテリアルにせよ、ハイ・マテリアルにせよ、充分美味しい。長期戦が予想される隠しボス戦等では凄い役に立ちます。</li>
+  </ol>
+</MarkdownLayout>
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+th, td {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  white-space: nowrap;
+}
+.num {
+  text-align: center;
+  white-space: nowrap;
+}
+.guardian-name {
+  white-space: nowrap;
+}
+</style>
