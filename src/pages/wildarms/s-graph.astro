@@ -1,0 +1,90 @@
+---
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+---
+
+<MarkdownLayout
+  title="ワイルドアームズ グラフによる比較研究"
+  description="ワイルドアームズ（PS1）各キャラのステータス成長をグラフで比較。"
+  game="ワイルドアームズ（無印）"
+  breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
+>
+  <p>各キャラのステータス成長をグラフ化してみました。何か新しい事実が分かればと思ったのですが、小さなポイントがいくつか見つかった以外は、それほど重要な点が見つかりませんでした。とりあえず、以下御覧下さい。</p>
+
+  <div class="grid2">
+    <div class="cell">
+      <img src="/images/wildarms/graph/rody.gif" alt="ロディ ステータス成長グラフ" />
+      <p>ロディのステータス成長曲線です。Str・VITはやや階段状になっていますが、他のキャラに比べれば一直線に近く、素直にステータスが伸びていく様子が分かります。</p>
+    </div>
+    <div class="cell">
+      <img src="/images/wildarms/graph/zack.gif" alt="ザック ステータス成長グラフ" />
+      <p>ザックのステータス成長曲線です。とても綺麗な線で、他キャラと比べる限りやや早熟な傾向にあります。というより高レベル帯のステータス成長が悪いと見るべきでしょうか。</p>
+    </div>
+    <div class="cell">
+      <img src="/images/wildarms/graph/cecilia.gif" alt="セシリア ステータス成長グラフ" />
+      <p>セシリアのステータス成長曲線です。SORを除き、早熟傾向にあります。</p>
+    </div>
+    <div class="cell"></div>
+  </div>
+
+  <hr />
+
+  <div class="grid2">
+    <div class="cell">
+      <img src="/images/wildarms/graph/hp.gif" alt="HP 成長グラフ" />
+      <p>大体Lv60前後から、全員のHPの伸びが悪くなるのが分かりますね。</p>
+    </div>
+    <div class="cell">
+      <img src="/images/wildarms/graph/mp.gif" alt="MP 成長グラフ" />
+      <p>両者ともLv50前後から伸びが悪くなるようです。セシリアはそれまで伸びが良かっただけに、悪くなるのがはっきりと分かります。ちなみにLv99時ではセシリアのMPはザックの2倍となります。</p>
+    </div>
+    <div class="cell">
+      <img src="/images/wildarms/graph/str.gif" alt="Str 成長グラフ" />
+      <p>概ね一直線ですが、全キャラとも高Lv帯でやや悪い感じです。</p>
+    </div>
+    <div class="cell">
+      <img src="/images/wildarms/graph/vit.gif" alt="VIT 成長グラフ" />
+      <p>他のステータスに比べ、長い間3人とも同じような成長を続けます。ロディが飛びぬけてくるのがLv40前後で、セシリアとザックの防御力に大きく差が出てくるのはLv50以降なのがグラフから伺えます。</p>
+    </div>
+    <div class="cell">
+      <img src="/images/wildarms/graph/sor.gif" alt="SOR 成長グラフ" />
+      <p>ロディは「お察し下さい」といったところですが、ザックとセシリアがあまり変わらないことに驚き。差がつき始めるのがLv80前後からというのは遅い感じがします。</p>
+    </div>
+    <div class="cell">
+      <img src="/images/wildarms/graph/res.gif" alt="RES 成長グラフ" />
+      <p>RESに関してはLv50までに大体上がりきってしまうようです。ロディは「はんのうアップル」をわりと投与しないと、セシリアより早くなりません。</p>
+    </div>
+  </div>
+</MarkdownLayout>
+
+<style>
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  margin: 1.5rem 0;
+}
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cell img {
+  max-width: 100%;
+  height: auto;
+}
+.cell p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 600px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
