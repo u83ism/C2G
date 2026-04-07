@@ -1,0 +1,337 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import { wanderers } from '../../data/highway/wanderers';
+import { partUnlocks } from '../../data/highway/parts';
+import { teamNicknames, jinteNicknames } from '../../data/highway/nicknames';
+import { enemyCars, customCars } from '../../data/highway/enemies';
+
+const headings = [
+  { depth: 2, slug: 'walkthrough',  text: '攻略' },
+  { depth: 3, slug: 'part1-1',      text: '第1部/1章' },
+  { depth: 3, slug: 'part1-2',      text: '第1部/2章' },
+  { depth: 3, slug: 'part1-3',      text: '第1部/3章' },
+  { depth: 3, slug: 'part1-4',      text: '第1部/4章' },
+  { depth: 3, slug: 'part2',        text: '第2部' },
+  { depth: 3, slug: 'part3',        text: '第3部' },
+  { depth: 2, slug: 'wanderer',     text: 'WANDERER出現条件リスト' },
+  { depth: 2, slug: 'lps',          text: 'LPS（LOVE POWER SYSTEM）について' },
+  { depth: 2, slug: 'parts',        text: 'パーツ通常解禁リスト' },
+  { depth: 2, slug: 'nicknames',    text: '通り名リスト' },
+  { depth: 2, slug: 'secrets',      text: '裏技' },
+  { depth: 2, slug: 'database',     text: 'データベース' },
+  { depth: 3, slug: 'enemy-cars',   text: '主要敵車データ' },
+  { depth: 3, slug: 'custom-cars',  text: 'カスタムカー自力チューンデータ' },
+];
+---
+
+<BaseLayout
+  title="首都高バトル0 攻略・裏技・データ"
+  description="PS2/2001年。本編攻略・WANDERER出現条件・パーツ解禁・裏技・敵車データを収録。"
+>
+  <TableOfContents slot="sidebar" headings={headings} />
+
+  <nav class="breadcrumb">
+    <a href="/">TOP</a>
+    <span class="sep">›</span>
+    <span>首都高バトル0</span>
+  </nav>
+
+  <div class="page-header">
+    <h1 class="page-title">首都高バトル0 攻略・裏技・データ</h1>
+    <div class="game-label">首都高バトル0</div>
+  </div>
+
+  <article class="prose">
+    <p>2001年発売と結構古いゲームなのですが、01等に比べて攻略ページがかなり少なくなったので、攻略の手助けとなるようなことをまとめておきます。クリアの助けになれれば幸いです。<strong>ネタバレ多数のため注意。</strong></p>
+
+    <hr />
+
+    <h2 id="walkthrough">攻略</h2>
+    <p>このゲームは「13鬼将（13DEVILS）」を相手にする4章構成の第1部、迅帝の敗北を聞きつけて再び首都高に舞い戻った凄腕ドライバー達の「12覇聖（The ZODIAC）」を相手にする第2部、そして幻の走り屋を求めてWANDERERを相手にする第3部と3部構成になっています。</p>
+    <p>ゲームの冒頭では迅帝を倒すことが最終目標かのような説明がなされ373人の敵が登録されてますが、第1部終了時点で12覇聖の存在が紹介され敵がさらに追加される仕掛けとなっています。（第2部終了時にも追加され最終的には全400人となる）</p>
+
+    <h3 id="part1-1">第1部/1章</h3>
+    <p>いきなりですが、<strong>第1部を普通にクリアするために必要なのはAクラスのフルチューン（LPS発動済）した車です。</strong>しかもAクラスと言っても何でも良い訳でなくかなり絞られます。<strong>オススメは購入できるノーマル車の中でもトップクラスのR34RVM（日産のスカイライン）</strong>。他の高性能な車は購入できるようになるまでにストーリーを進行させなければなりませんが、R34RVMは金さえあれば第1章でも買うことができるのでかなり有難いです。Bクラス以下の車だと完全にパワー負けするので、相当なテクニックが無いとクリア困難です。というより相手の事故待ちといった感じになってしまいます。</p>
+    <p>ちなみに<strong>第1部ラスボスの迅帝はR34RKKというカスタムカーで、LPS発動済みフルチューン・フルブースト状態のR34RVMすら上回ります。具体的なスペックは1200ps／1290kg。出力だけならゲーム中ナンバー1です。</strong></p>
+    <p>そんなわけで第1部は<strong>「R34RVMのフルチューン費用約5000万CPを4章の環状線＆新環状の敵を全滅させるまでに溜めきる」</strong>ことを目標に、長期的な視野で資金繰りを気にしながら攻略しなければなりません。具体的には1章をB・Cクラスをチューンしてクリアし、2章でR34RVM購入、そしてチューンするのを徹底的に我慢して、ようやく迅帝戦の直前にフルチューンの金が溜まるといった流れになります。わりとシビアです。</p>
+    <p>本当はお好きな車を購入して適当にチューンして進行できれば一番いいんですが、第1部でそれをしようとすると金が足りなくなって、一度倒したWANDERERを何度も追撃して金稼ぎを何度もしなければなくなったり、最悪の場合、マトモに敵が倒せなくなって資金稼ぎもできず事実上ハマる可能性があるので……。</p>
+    <p>さて1章ですがB・Cクラスの車なので出来る限りチューンをしても大丈夫です。そうしないといくら最初とは言え13鬼将に勝てません。まずは内周りから攻めるのがオススメ。環状線では銀座の辺りで勝負するとよく勝てます。新環状の一部でもありますし、後半でも普通にこの一帯は勝負ポイントとして使うので覚えておきましょう。</p>
+
+    <h3 id="part1-2">第1部/2章</h3>
+    <p>2章に入るとCクラスだと歯が立たなくなってくるので、テクニック次第でどうにでもなる環状線の内回りから潰していくのがおすすめ。Bクラスだともうちょっと対抗できるかもしれませんが、明らかに性能負けしてると思い始めたら、その頃にはR34RVMを買うお金が溜まってるはずです。下手に引き伸ばさずにさっさと買いましょう。R34RVMは少々チューンしてやれば、13鬼将含め2章の敵を薙ぎ倒すことができます。</p>
+
+    <h3 id="part1-3">第1部/3章</h3>
+    <p>お金が溜まっているのなら、まずは<strong>R34RVMのエンジンをTYPE1かTYPE2にチューンしましょう。</strong>ただし多分<strong>TYPE1じゃないと、迅帝までにフルチューン代が溜まりきらない</strong>と思います。エンジンは高いので慎重に決めていきたいところ。他のパーツはフルチューンで。（当然マフラーはエンジンに合わせて下さい）これだと少々13鬼将戦が難儀だと思いますが、ブーストとギアとバトル場所の調整でどうにかして下さい。</p>
+
+    <h3 id="part1-4">第1部/4章</h3>
+    <p>4章になると湾岸線や横羽線等の小細工が効かないコースが解禁されます。3章のチューンでこれらのコースを勝つのはまず無理に近いので、とりあえず環状線と新環状の敵を全滅させるつもりで頑張ってください。そこでR34RVMのLPS発動フルチューン代が溜まらなければアウトです。ちなみに<strong>肝心のフルチューン代ですが合計して約5000万CPが目安</strong>です。注意。</p>
+    <p>さて晴れて<strong>LPS発動済みフルチューンのR34RVMが手に入ったら、第1部ラスボスの迅帝、第2部ラスボスの白いカリスマ、第3部ラスボスの？？？以外はまったく恐れるに足りません。</strong></p>
+    <p>迅帝戦。こいつだけはこちらの性能を上回ってるので、バトル場所が重要になってきます。オススメは新環状の南側の直線地帯以外の場所です。<strong>第2部以降はどちらが先に事故るかで勝負が決まるのが普通</strong>になりますので、その予行演習と思ってください。実際の勝負では大体、時速250〜300キロ前半ぐらいを使うので、ギア調整もしっかりして下さい。</p>
+
+    <h3 id="part2">第2部</h3>
+    <p>晴れて<strong>第1部をクリアしたあなたには3億CPという今まで見たこともないような大金が贈られます。</strong>ここからは豊富な資金力をバックにフルチューン車を何台も用意し、相手が事故るのを待つゲームとなります。なおこのゲームの速度上限は425キロです。</p>
+    <p>第2部ラスボスは白いカリスマ。FD3RKというカスタムカーに乗っています。<strong>性能は1106ps／998kg。</strong>軽量なため加速が鬼です。まず加速勝負では勝てません。しかし<strong>最高時速が380キロ前後にしかならないので、後から400キロ超で追い抜いて勝つ</strong>ことになります。勝負場所は湾岸線or横羽線で。</p>
+
+    <h3 id="part3">第3部</h3>
+    <p><strong>第3部に入ったあなたにはさらに5億CPという大金が手に入ります。</strong>第3部の目的は残りのWANDERER潰しになります。車種制限があったりするのでなんだかんだで結構お金がかかります。おふざけで散財しまくると足りなくなってクリアが絶望的になる恐れもあるので注意。<strong>特に所持金制限があるWANDERERを放置しておくと危険です。（経験談）</strong></p>
+    <p>WANDERERを全て倒し終えて399人が倒された状態になると、最終ボス「？？？」が出現します。Cクラス車のカスタムカーであるS30ZXに乗っています。<strong>1104ps／722kg</strong>という性能を誇ります。加速が早すぎてこっちが追いつく前に勝負が終わってしまう可能性があります。白いカリスマと同じく湾岸線or横羽線で挑みましょう。</p>
+    <p>余談ですがWANDERERの「ZERO」と最終ボス「？？？」は漫画の「湾岸ミッドナイト」の設定にそっくりです。車種は同じだわ乗り手がライバル関係だわ……。</p>
+
+    <hr />
+
+    <h2 id="wanderer">WANDERER出現条件リスト</h2>
+    <p>全編に渡って倒し続けることになるWANDERER。その中には出現条件が恐ろしく厳しい敵もおり、ゲーム中ヒントだけで出現させるのは非常に困難です。独自調査のため間違いの可能性もあります。あくまでも指針として御利用下さい。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>通り名</th>
+            <th>出現場所</th>
+            <th>出現条件</th>
+          </tr>
+        </thead>
+        <tbody>
+          {wanderers.map(w => (
+            <tr>
+              <td class="num">{w.no}</td>
+              <td class="nowrap">{w.name}</td>
+              <td class="nowrap">{w.location}</td>
+              <td>
+                {w.conditions.length === 1
+                  ? w.conditions[0]
+                  : <ul>{w.conditions.map(c => <li>{c}</li>)}</ul>
+                }
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <hr />
+
+    <h2 id="lps">LPS（LOVE POWER SYSTEM）について</h2>
+    <p><strong>実は並のプレイヤーにとって完全クリアするために必須なシステム</strong>です。条件は<strong>「ODOメーター（マシンの総走行距離）が3000km以上に達する」</strong>こと。</p>
+    <p>やり方：</p>
+    <ol>
+      <li>メインメニューで「TIME ATTACK」を選択。</li>
+      <li>コースは「OVAL」の「0-400」を選択。</li>
+      <li>とりあえず「0-400」走りきる。</li>
+      <li>「RESULT MENU」のまま放置するとAUTO PILOTになるのでさらに放置。</li>
+      <li>100km/h程度しか出ないけど、ODOメーターは増えていく。</li>
+    </ol>
+    <p>欠点は時間がかかること。放っておいても20〜30時間程度かかります。また何時間かおきにガレージに戻って稼いだODOをセーブしてください。長時間放置でPS2がバグって壁を突き抜けてODOが増えない状態になることがあります。</p>
+    <p>見返りとして<strong>一部の最強パーツを除く全てのパーツが普通に購入できるようになります。</strong>さらに<strong>一部の最強パーツ（エンジンTYPE7、マフラーTYPE8、ボディTYPE5）もLPS発動させた車に限り購入できるようになります。</strong>ただし<strong>購入するにはとんでもない大金がかかります。</strong></p>
+
+    <hr />
+
+    <h2 id="parts">パーツ通常解禁リスト</h2>
+    <p>パーツは敵を倒すとどんどん解禁されます。ただし<strong>本命の車が手に入ったらさっさとLPS発動させてストーリー進行待たずに全解禁した方がいいです。</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>パーツ</th><th>タイプ</th><th>解禁条件（敵を倒す）</th></tr>
+        </thead>
+        <tbody>
+          {partUnlocks.map(p => (
+            <tr>
+              <td class="nowrap">{p.part}</td>
+              <td class="nowrap">{p.type}</td>
+              <td>{p.unlock}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <hr />
+
+    <h2 id="nicknames">通り名リスト</h2>
+    <p>ライバルチームと同車種でそのチームステッカーを貼ると下記のような通り名がつきます。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>チーム</th><th>通り名</th></tr>
+        </thead>
+        <tbody>
+          {teamNicknames.map(n => (
+            <tr>
+              <td class="nowrap">{n.team}</td>
+              <td>{n.nickname}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h3>特殊通り名</h3>
+    <p><strong>○○のカリスマ：</strong>白いカリスマの「FD3RK」に白いカリスマのステッカーを貼ると、車のカラーによって通り名が変わります。</p>
+    <p><strong>迅帝：</strong>迅帝の「R34RKK」に迅帝のステッカーを貼るとバトル成績によって通り名が変わります。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>条件</th><th>通り名</th></tr>
+        </thead>
+        <tbody>
+          {jinteNicknames.map(n => (
+            <tr><td>{n.condition}</td><td>『{n.nickname}』</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p><strong>首都高の伝説：</strong>1度も負けることなく？？？を倒す（400人全員を一撃で倒して完全クリア）と通り名が「首都高の伝説」になります。</p>
+
+    <hr />
+
+    <h2 id="secrets">裏技</h2>
+
+    <h3>タイトル画面</h3>
+    <p>通常はタイトル→CGデモ→タイトル→デモリプレイが繰り返されますが、SELECTボタンを押すことによってCGデモの後のタイトルをスキップする事が出来ます。</p>
+
+    <h3>カラー変更</h3>
+    <p>カラーチェンジモードでカラーパート1で△ボタンを押すとカラーパート2も同じ色になります。その逆も可能です。L2を押すとそのカラーが0になり、R2を押すとそのカラーが255になります。</p>
+
+    <h3>ライバルリスト</h3>
+    <p>ライバル帳でL2,R2ボタンを押すと車のカラーデーターを見ることができます。L1,R1ボタンを押すと倒していないライバルにジャンプ。△ボタンを押すと倒したライバルと1対1でバトルすることができます。</p>
+
+    <h3>R30・R30Mの秘密</h3>
+    <p>「R30」か「R30M」はカラーを上のボディーに白、下のボディーに黒とするとパトカーになります。さらにリアスポイラーType5を装着すると自動小銃がつき○×同時押しで弾が撃てるようになります。1発ごとに1000CP消費。クラクションはどのタイプを選んでもサイレンになります。</p>
+
+    <h3>コースイン時の小技</h3>
+    <p>フリーラン時に□ボタンを押したままコースインすればアザーカーが走っている状態にできます。コースイン時に倒したボスに対応したキー（迅帝→上、白いカリスマ→下、？？？→左）を押すと対応するエンディングムービーが流れます。コースイン時にL1/L2/R1/R2のいずれか1つだけ押しながらコースインするとルームミラーにマスコット（玉繭物語2のキャラ）が付きます。</p>
+    <ul>
+      <li>L1：ドングリィ / L2：ポッチ / R1：ルッチ / R2：ゲラゲラ</li>
+    </ul>
+
+    <h3>その他の小技</h3>
+    <p>ポーズ画面で□ボタンを押したままメニューを選んでいくと、いちばん下にANALYZE（アナライズ）というメニューが追加されます。</p>
+    <p>1分30秒以上のリプレイを見る時にR2ボタンを押しっぱなしにしていると、「Let me go」という曲を聴くことが出来ます。</p>
+
+    <h3>ナンバープレートのあれこれ</h3>
+    <p>ナンバープレートのひらがなのところを『ろ』にすると字光式ナンバーになります。可変ナンバー装備車の場合はカーセレクトのところで△ボタンを押せばナンバーを変更できます。可変ナンバー装備車はオービスにかからないようになっています。</p>
+
+    <h3>エンジンのタレ</h3>
+    <p>長距離走っているとエンジン性能やタイヤの性能が落ちてくることを一般に「タレる」と言います。本作ではエンジンとタービンのタレ、タイヤのタレがあります。これはtrIPメーターに依存し、ガレージに戻り出直せばタレは解消されます。ターボ車はエンジン・タービン・タイヤすべての影響を受けるため、多くても3戦ぐらいでガレージに戻るようにしましょう。</p>
+
+    <hr />
+
+    <h2 id="database">データベース</h2>
+
+    <h3 id="enemy-cars">主要敵車データ</h3>
+    <p>13鬼将（13DEVILS）・12覇聖（The ZODIAC）・？？？のスペック。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>通り名</th>
+            <th>車種</th>
+            <th class="num">車重（kg）</th>
+            <th class="num">馬力（ps）</th>
+            <th>出現場所</th>
+          </tr>
+        </thead>
+        <tbody>
+          {enemyCars.map(e => (
+            <tr>
+              <td class="num">{e.no}</td>
+              <td class="nowrap">{e.name}</td>
+              <td class="nowrap">{e.car}</td>
+              <td class="num">{e.weightKg}</td>
+              <td class="num">{e.powerPs}</td>
+              <td class="nowrap">{e.location}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="custom-cars">カスタムカー自力チューンデータ</h3>
+    <p>ボスを倒すと購入できるカスタムカーを買い、LPS発動済みフルチューンしたときの自車スペック（NA車以外はフルブースト状態）。ほとんどはフルチューンで敵よりも強くなりますが、最後の方になると同じぐらいにしかなりません。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>通り名</th>
+            <th>車種</th>
+            <th class="num">車重（kg）</th>
+            <th class="num">馬力（ps）</th>
+          </tr>
+        </thead>
+        <tbody>
+          {customCars.map(c => (
+            <tr>
+              <td class="nowrap">{c.name}</td>
+              <td class="nowrap">{c.car}</td>
+              <td class="num">{c.weightKg}</td>
+              <td class="num">{c.powerPs}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+.breadcrumb {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+.breadcrumb a { color: var(--text-muted); }
+.breadcrumb a:hover { color: var(--text); }
+.sep { opacity: 0.5; }
+
+.page-header {
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.page-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+.game-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 2rem;
+}
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+th, td {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+}
+thead th {
+  background: var(--surface-2, var(--surface));
+  font-weight: 600;
+  white-space: nowrap;
+}
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.nowrap { white-space: nowrap; }
+td ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+td li { margin: 0.1rem 0; }
+</style>
