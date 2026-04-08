@@ -18,7 +18,7 @@ const filtered = headings.filter(h => h.depth <= 3);
 
 <BaseLayout title={title} description={description}>
   {filtered.length > 1 && (
-    <TableOfContents slot="sidebar" headings={headings} />
+    <TableOfContents slot="sidebar" headings={filtered} />
   )}
 
   <nav class="breadcrumb">
