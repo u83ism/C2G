@@ -1,6 +1,7 @@
 ---
 title: "2024年のAmong Us 考"
 game: Among Us
+releaseYear: 2018
 description: "2024年時点のAmong Usのよもやま事、ゲームバランス調整術・各種考察"
 ---
 

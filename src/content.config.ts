@@ -5,6 +5,7 @@ import { glob } from 'astro/loaders';
 const gameContent = z.object({
   title: z.string(),
   game: z.string(),
+  releaseYear: z.number(),
   description: z.string().optional(),
   wip: z.boolean().optional(),
 });
@@ -15,12 +16,12 @@ const civilization = defineCollection({
 });
 
 const slayTheSpire = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/slayTheSpire' }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/slay-the-spire' }),
   schema: gameContent,
 });
 
 const amongUs = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/amongUs' }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/among-us' }),
   schema: gameContent,
 });
 
@@ -34,4 +35,4 @@ const ssx = defineCollection({
   schema: gameContent,
 });
 
-export const collections = { civilization, slayTheSpire, amongUs, column, ssx };
+export const collections = { civilization, 'slay-the-spire': slayTheSpire, 'among-us': amongUs, column, ssx };

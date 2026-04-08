@@ -5,7 +5,6 @@ import {
   mainSection,
   staticMemoCards,
   collectionUrlPrefixes,
-  releaseYears,
 } from '../data/menu';
 import type { GameCard, MenuLink } from '../data/menu';
 
@@ -13,33 +12,33 @@ import type { GameCard, MenuLink } from '../data/menu';
 const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries] =
   await Promise.all([
     getCollection('civilization'),
-    getCollection('slayTheSpire'),
-    getCollection('amongUs'),
+    getCollection('slay-the-spire'),
+    getCollection('among-us'),
     getCollection('ssx'),
   ]);
 
 // ── Build collection-based GameCard[] (grouped by game field) ────────────────
-type CollectionEntry = { id: string; data: { title: string; game: string; wip?: boolean } };
+type CollectionEntry = { id: string; data: { title: string; game: string; releaseYear: number; wip?: boolean } };
 
 function toCards(entries: CollectionEntry[], urlPrefix: string): GameCard[] {
-  const groups = new Map<string, MenuLink[]>();
+  const groups = new Map<string, { links: MenuLink[]; releaseYear: number }>();
   for (const e of entries) {
-    const links = groups.get(e.data.game) ?? [];
-    links.push({ label: e.data.title, href: `${urlPrefix}/${e.id}`, wip: e.data.wip });
-    groups.set(e.data.game, links);
+    const group = groups.get(e.data.game) ?? { links: [], releaseYear: e.data.releaseYear };
+    group.links.push({ label: e.data.title, href: `${urlPrefix}/${e.id}`, wip: e.data.wip });
+    groups.set(e.data.game, group);
   }
-  return Array.from(groups.entries()).map(([title, links]) => ({ title, links }));
+  return Array.from(groups.entries()).map(([title, { links, releaseYear }]) => ({ title, links, releaseYear }));
 }
 
 // 全カードをリリース年（新しい順）でソート
 const allCards: GameCard[] = [
   ...mainSection.cards,
-  ...toCards(slayEntries,        collectionUrlPrefixes.slayTheSpire),
+  ...toCards(slayEntries,        collectionUrlPrefixes['slay-the-spire']),
   ...toCards(civilizationEntries, collectionUrlPrefixes.civilization),
-  ...toCards(amongUsEntries,     collectionUrlPrefixes.amongUs),
+  ...toCards(amongUsEntries,     collectionUrlPrefixes['among-us']),
   ...toCards(ssxEntries,         collectionUrlPrefixes.ssx),
   ...staticMemoCards,
-].sort((a, b) => (releaseYears[b.title] ?? 0) - (releaseYears[a.title] ?? 0));
+].sort((a, b) => b.releaseYear - a.releaseYear);
 
 ---
 

@@ -9,6 +9,7 @@ export type MenuLink = {
 export type GameCard = {
   readonly title: string;
   readonly subtitle?: string;
+  readonly releaseYear: number;
   readonly links: readonly MenuLink[];
 };
 
@@ -21,52 +22,38 @@ export type MenuSection = {
 // Used in index.astro to build hrefs from collection entry IDs.
 export const collectionUrlPrefixes = {
   civilization:  '/civilization',
-  slayTheSpire:  '/slay-the-spire',
-  amongUs:       '/among-us',
+  'slay-the-spire': '/slay-the-spire',
+  'among-us':       '/among-us',
   ssx:           '/ssx',
   column:        '/column',
 } as const;
-
-// ── Release year data for sorting ────────────────────────────────────────────
-// カードタイトル → 日本国内リリース年。新しい順に並べたいのでソートはここを参照する。
-// 新しいゲームを追加するときはここにタイトルと年を追記するだけでOK。
-export const releaseYears: Readonly<Record<string, number>> = {
-  'Slay the Spire':                             2019,
-  'Among Us':                                   2018,
-  'Civilization 6':                             2016,
-  'Civilization Revolution':                    2008,
-  'エキサイティングプロレス5':                  2004,
-  'ブラック/マトリクスシリーズ':                 2002,
-  'Tropico':                                    2001,
-  '首都高バトル0':                              2001,
-  'Sorcerous Stabber ORPHEN 魔術士オーフェン':   2000,
-  'エクストリームレーシングSSX(2000)':          2000,
-  'ワイルドアームズ':                           1996,
-  'ファイナルファンタジー5':                     1992,
-};
 
 // ── Static cards for ゲームメモ・考察 (data-driven pages, not collections) ──
 export const staticMemoCards: readonly GameCard[] = [
   {
     title: 'ファイナルファンタジー5',
+    releaseYear: 1992,
     links: [
       { label: '必要AP量一覧表（SFC/GBA両対応）', href: '/ff5/ap-chart' },
     ],
   },
   {
     title: '首都高バトル0',
+    releaseYear: 2001,
     links: [
       { label: '攻略・裏技・データ', href: '/highway/guide' },
     ],
   },
   {
     title: 'Tropico',
+    releaseYear: 2001,
     links: [
       { label: '攻略メモ', href: '/tropico' },
     ],
   },
   {
     title: 'ブラック/マトリクスシリーズ',
+    releaseYear: 2002,
     links: [
       { label: 'B/M2 武器熟練度考察', href: '/bm/bm2-wp' },
       { label: 'B/MOO 自動系スキル修得考察', href: '/bm/bmoo-exp' },
@@ -80,6 +67,7 @@ export const mainSection: MenuSection = {
   cards: [
     {
       title: 'ワイルドアームズ',
+      releaseYear: 1996,
       links: [
         { label: '概要', href: '/wildarms/about' },
         { label: 'ミニゲーム・イベントデータ', href: '/wildarms/eventdeta' },
@@ -110,6 +98,7 @@ export const mainSection: MenuSection = {
     },
     {
       title: 'Sorcerous Stabber ORPHEN 魔術士オーフェン',
+      releaseYear: 2000,
       links: [
         { label: '概要', href: 'https://u83ism.github.io/DLB/orphen/aboutg.htm', external: true },
         { label: 'ボス攻略', href: 'https://u83ism.github.io/DLB/orphen/boss.htm', external: true },
@@ -119,6 +108,7 @@ export const mainSection: MenuSection = {
     },
     {
       title: 'エキサイティングプロレス5',
+      releaseYear: 2004,
       links: [
         { label: 'シーズンモード攻略', href: 'https://21st-century-power-bomb.netlify.app/game/5season', external: true, wip: true },
         { label: '技捜索用リスト', href: 'https://21st-century-power-bomb.netlify.app/game/5movelist', external: true },
