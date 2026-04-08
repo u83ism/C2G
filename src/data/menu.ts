@@ -79,7 +79,6 @@ export const mainSection: MenuSection = {
       subtitle: 'Wild Arms / PS',
       links: [
         { label: '概要', href: '/wildarms/about' },
-        { label: 'ストーリー攻略', href: '/wildarms/story', wip: true },
         { label: 'ミニゲーム・イベントデータ', href: '/wildarms/eventdeta' },
         { label: '豆知識', href: '/wildarms/mame' },
         { label: '隠し要素', href: '/wildarms/secret' },
