@@ -130,7 +130,3 @@
   to = "/tropico"
   status = 301
 
-[[redirects]]
-  from = "/r18/hana-takeda.htm"
-  to = "/r18/hana-takeda"
-  status = 301
