@@ -1,10 +1,10 @@
-// [value, upgradeCost?]
+// [値, アップグレードコスト?]
 export type ArmLevel = readonly [number, number?];
 
 export type ArmStat = {
   readonly label: string;
-  readonly levels: readonly ArmLevel[]; // Lv1 to Lv8
-  readonly total: number; // cumulative upgrade cost for this stat
+  readonly levels: readonly ArmLevel[]; // Lv1〜Lv8
+  readonly total: number; // このステータスの累計アップグレードコスト
 };
 
 export type Arm = {

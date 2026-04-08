@@ -1,6 +1,6 @@
-// ── Canonical game info (single source of truth) ─────────────────────────────
-// Static pages import from here; top menu cards also reference these.
-// Collection-based pages use frontmatter `game:` — keep values in sync.
+// ── ゲーム情報（単一ソース） ────────────────────────────────────────────────────
+// 静的ページはここからインポートし、トップメニューカードもここを参照する。
+// コレクションベースのページはfrontmatterの `game:` フィールドを使用するため、値を一致させること。
 export const gameInfo = {
   excitePro5: { title: 'エキサイティングプロレス5',                   releaseYear: 2004 },
   bmoo:       { title: 'ブラックマトリクス OO',                         releaseYear: 2002 },
@@ -27,8 +27,8 @@ export type GameCard = {
   readonly links: readonly MenuLink[];
 };
 
-// ── URL prefixes for content collections ────────────────────────────────────
-// Used in index.astro to build hrefs from collection entry IDs.
+// ── コレクションのURLプレフィックス ──────────────────────────────────────────
+// index.astro でコレクションエントリIDからhrefを生成するために使用する。
 export const collectionUrlPrefixes = {
   civilization:  '/civilization',
   'slay-the-spire': '/slay-the-spire',

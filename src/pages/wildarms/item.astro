@@ -8,7 +8,7 @@ const headings = [
   { depth: 2, slug: 'equipment',  text: '装備品' },
 ];
 
-// Group consumables by item name to render rowspan-style
+// 消耗品をアイテム名でグループ化してrowspanスタイルで描画する
 type Group = { item: string; entries: typeof consumables };
 const consumableGroups: Group[] = [];
 for (const entry of consumables) {
