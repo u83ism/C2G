@@ -4,8 +4,6 @@ game: Among Us
 description: "2024年時点のAmong Usのよもやま事、ゲームバランス調整術・各種考察"
 ---
 
-# 2024年のAmong Us 考
-
 # この文章に書かれていること
 - 最盛期を過ぎてネット上での文献もやや少ない **2024年時点の** [Among Us](https://store.steampowered.com/app/945360/Among_Us/?l=japanese)のよもやま事について語る
 - 楽しく遊ぶためのゲームバランス調整術/考え方 
