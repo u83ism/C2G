@@ -1,11 +1,12 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 ---
 
 <MarkdownLayout
   title="ワイルドアームズ グラフによる比較研究"
   description="ワイルドアームズ（PS1）各キャラのステータス成長をグラフで比較。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
 >
   <p>各キャラのステータス成長をグラフ化してみました。何か新しい事実が分かればと思ったのですが、小さなポイントがいくつか見つかった以外は、それほど重要な点が見つかりませんでした。とりあえず、以下御覧下さい。</p>

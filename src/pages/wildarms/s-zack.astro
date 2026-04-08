@@ -1,12 +1,13 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 import { statuses } from '../../data/wildarms/s-zack';
 ---
 
 <MarkdownLayout
   title="ワイルドアームズ ステータス成長表（ザック）"
   description="ワイルドアームズ（PS1）ザックのLv1〜99ステータス成長データ。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
 >
   <p>アップルによるドーピング一切無しで育てた時の、ザックの能力値の推移データです。なおこのデータは「水瀬のおしゃべりing☆BOX（現「窓の向こうのものがたり」）」（水瀬氏）に掲載されていたLUNE氏のデータを、両氏の許可を頂いて転載させていただいたものです。許可頂きありがとうございました。</p>

@@ -1,5 +1,6 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 
 const headings = [
   { depth: 2, slug: 'expo',     text: '古代文明博覧会' },
@@ -16,7 +17,7 @@ const headings = [
 <MarkdownLayout
   title="ワイルドアームズ ミニゲーム・イベントデータ"
   description="ワイルドアームズ（PS1）の古代文明博覧会ミニゲーム・アーデルハイドレスキュー・復興イベント・偽装結婚式の詳細データ。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
   headings={headings}
 >

@@ -1,6 +1,7 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
 import { stageExps, characterMasteries, inheritedCharacters, masteryTotal } from '../../data/bm/bmoo';
+import { gameInfo } from '../../data/menu';
 
 const headings = [
   { depth: 2, slug: 'stage-exp',  text: '各戦闘取得経験値' },
@@ -9,9 +10,9 @@ const headings = [
 ---
 
 <MarkdownLayout
-  title="BLACK/MATRIX OO 自動系スキル修得考察"
+  title="自動系スキル修得考察"
   description="B/MOOの各ステージ取得経験値と、キャラクター別スキルマスターに必要な経験値の一覧。"
-  game="BLACK/MATRIX OO"
+  game={gameInfo.bmoo.title}
   breadcrumb={[{ label: 'BLACK/MATRIX', href: '/bm/bmoo-exp' }]}
   headings={headings}
 >

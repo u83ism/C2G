@@ -1,12 +1,13 @@
 ---
 import MarkdownLayout from '../layouts/MarkdownLayout.astro';
 import { scenarios, buildStars } from '../data/tropico/scenarios';
+import { gameInfo } from '../data/menu';
 ---
 
 <MarkdownLayout
   title="Tropico キャンペーン攻略メモ"
   description="Tropico（PC/2001年）のキャンペーンシナリオ一覧と難易度まとめ。"
-  game="Tropico"
+  game={gameInfo.tropico.title}
   breadcrumb={[{ label: 'Tropico', href: '/tropico' }]}
 >
   <p>すんませんまだ「故郷を夢見て」しかクリアできませんorz</p>

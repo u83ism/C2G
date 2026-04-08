@@ -2,8 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
-  mainSection,
-  staticMemoCards,
+  staticCards,
   collectionUrlPrefixes,
 } from '../data/menu';
 import type { GameCard, MenuLink } from '../data/menu';
@@ -32,12 +31,11 @@ function toCards(entries: CollectionEntry[], urlPrefix: string): GameCard[] {
 
 // 全カードをリリース年（新しい順）でソート
 const allCards: GameCard[] = [
-  ...mainSection.cards,
+  ...staticCards,
   ...toCards(slayEntries,        collectionUrlPrefixes['slay-the-spire']),
   ...toCards(civilizationEntries, collectionUrlPrefixes.civilization),
   ...toCards(amongUsEntries,     collectionUrlPrefixes['among-us']),
   ...toCards(ssxEntries,         collectionUrlPrefixes.ssx),
-  ...staticMemoCards,
 ].sort((a, b) => b.releaseYear - a.releaseYear);
 
 ---

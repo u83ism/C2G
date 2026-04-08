@@ -1,6 +1,7 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
 import { sfcJobs, gbaJobs, computeTotal } from '../../data/ff5/jobs';
+import { gameInfo } from '../../data/menu';
 
 const LEVELS = ['Lv1', 'Lv2', 'Lv3', 'Lv4', 'Lv5', 'Lv6', 'Lv7'] as const;
 
@@ -11,7 +12,7 @@ const gbaTotal = gbaJobs.reduce((sum, j) => sum + computeTotal(j.ap), 0);
 <MarkdownLayout
   title="FF5 必要AP量一覧表（SFC/GBA両対応）"
   description="FF5のジョブレベルアップに必要なAP量をSFC版・GBA版別に一覧化。育成計画の参考に。"
-  game="Final Fantasy V"
+  game={gameInfo.ff5.title}
   breadcrumb={[{ label: 'FF5', href: '/ff5' }]}
 >
   <p>最近FF5をプレイしなおしたんですが、攻略サイトを見て回ってもジョブレベルを上げるのに必要なAP量の一覧表が見つからなかったので自作しました。今時SFC版だけってのもアレなのでGBA版も用意してみました。育成計画を建てる際にでも使ってください。</p>

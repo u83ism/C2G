@@ -14,9 +14,10 @@ interface Props {
 
 const { title, description, game, breadcrumb, headings = [] } = Astro.props;
 const filtered = headings.filter(h => h.depth <= 3);
+const pageTitle = `${game} ${title}`;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={pageTitle} description={description}>
   {filtered.length > 1 && (
     <TableOfContents slot="sidebar" headings={filtered} />
   )}

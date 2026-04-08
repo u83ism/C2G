@@ -1,5 +1,6 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 import { arms } from '../../data/wildarms/b-rody';
 
 const headings = [
@@ -24,7 +25,7 @@ const armComments: Record<string, string> = {
 <MarkdownLayout
   title="ワイルドアームズ 戦闘考察（ロディ）"
   description="ワイルドアームズ（PS1）ロディのアームデータ・フォースアビリティ・最強装備案の考察。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
   headings={headings}
 >

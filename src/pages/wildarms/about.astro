@@ -1,11 +1,12 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 ---
 
 <MarkdownLayout
-  title="ワイルドアームズ 概要"
+  title="概要"
   description="PS1/1996年のRPG『ワイルドアームズ』の概要とサイトについて。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
 >
   <p>ワイルドアームズは製作：メディアビジョン/販売：SCEの人気RPGシリーズです。現在PSで1～2、そしてPS2で3～5と、1の「公式フェイク版」である「ワイルドアームズ アルターコード：F」が発売されています。</p>

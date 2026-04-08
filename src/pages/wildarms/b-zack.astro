@@ -1,5 +1,6 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 import { skills } from '../../data/wildarms/b-zack';
 
 const headings = [
@@ -13,7 +14,7 @@ const headings = [
 <MarkdownLayout
   title="ワイルドアームズ 戦闘考察（ザック）"
   description="ワイルドアームズ（PS1）ザックの早撃ちデータ・フォースアビリティ・最強装備案の考察。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
   headings={headings}
 >

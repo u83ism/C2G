@@ -1,12 +1,13 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
 import { weaponMasteries, grandTotal, LEVELS } from '../../data/bm/bm2';
+import { gameInfo } from '../../data/menu';
 ---
 
 <MarkdownLayout
   title="BLACK/MATRIX 2 武器熟練度考察"
   description="B/M2の全武器種類マスターに必要なポイント数を一覧化。周回計画の参考に。"
-  game="BLACK/MATRIX 2"
+  game={gameInfo.bm2.title}
   breadcrumb={[{ label: 'BLACK/MATRIX', href: '/bm/bm2-wp' }]}
 >
   <p>超アイテム収集作業＆周回ゲーであるB/M2。全アイテム回収するためには、少なくても十数周しなければならないという恐ろしい仕様です。</p>

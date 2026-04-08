@@ -1,5 +1,6 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 
 const headings = [
   { depth: 2, slug: 'item-dup',    text: 'アイテム増殖法' },
@@ -12,7 +13,7 @@ const headings = [
 <MarkdownLayout
   title="ワイルドアームズ 裏技・バグ技"
   description="PS1版ワイルドアームズの裏技・バグ技まとめ。アイテム増殖法・海歩きバグ等。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
   headings={headings}
 >

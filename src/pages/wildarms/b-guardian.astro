@@ -1,5 +1,6 @@
 ---
 import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+import { gameInfo } from '../../data/menu';
 import { plates, materials, fmt } from '../../data/wildarms/b-guardian';
 
 const headings = [
@@ -11,7 +12,7 @@ const headings = [
 <MarkdownLayout
   title="ワイルドアームズ ガーディアン関連研究"
   description="ワイルドアームズ（PS1）のガーディアンプレート装備によるステータス上昇率と、マテリアル・ハイマテリアルの効果一覧。"
-  game="ワイルドアームズ（無印）"
+  game={gameInfo.wildarms.title}
   breadcrumb={[{ label: 'ワイルドアームズ', href: '/wildarms/about' }]}
   headings={headings}
 >
