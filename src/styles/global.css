@@ -213,6 +213,26 @@ footer {
   font-size: 0.8rem;
 }
 
+/* グループラベル（子リストの見出し） */
+.game-card .group-label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* 子リストのインデント・スタイル */
+.game-card .group-children {
+  padding-left: 0.9rem;
+  margin-top: 0.15rem;
+  border-left: 1px solid var(--border);
+}
+.game-card .group-children li::before {
+  content: '–';
+  color: var(--text-muted);
+}
+
 /* ── Updates ─────────────────────────────── */
 
 .updates {

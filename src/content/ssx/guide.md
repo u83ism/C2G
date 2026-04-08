@@ -1,6 +1,6 @@
 ---
-title: "エクストリームレーシングSSX攻略メモ"
-game: "SSX"
+title: "攻略メモ"
+game: "エクストリームレーシングSSX(2000)"
 description: "PS2/2000年。全キャラ称号「マスター」取得を目指した攻略メモ。"
 wip: true
 ---
