@@ -34,8 +34,8 @@ const filtered = headings.filter(h => h.depth <= 3);
   </nav>
 
   <div class="page-header">
-    <h1 class="page-title">{title}</h1>
     <div class="game-label">{game}</div>
+    <h1 class="page-title">{title}</h1>
   </div>
 
   <article class="prose">
@@ -63,17 +63,19 @@ const filtered = headings.filter(h => h.depth <= 3);
   border-bottom: 1px solid var(--border);
 }
 
-.page-title {
-  font-size: 1.35rem;
+.game-label {
+  font-size: 1.4rem;
   font-weight: 700;
+  color: var(--accent-light);
   line-height: 1.3;
   margin-bottom: 0.3rem;
 }
 
-.game-label {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--accent);
+.page-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
 :global(.prose hr) {

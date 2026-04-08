@@ -1,5 +1,63 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  mainSection,
+  staticMemoCards,
+  collectionUrlPrefixes,
+  memoCardOrder,
+} from '../data/menu';
+import type { GameCard, MenuLink } from '../data/menu';
+
+// ── Fetch collections ────────────────────────────────────────────────────────
+const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries, columnEntries] =
+  await Promise.all([
+    getCollection('civilization'),
+    getCollection('slayTheSpire'),
+    getCollection('amongUs'),
+    getCollection('ssx'),
+    getCollection('column'),
+  ]);
+
+// ── Build collection-based GameCard[] (grouped by game field) ────────────────
+type CollectionEntry = { id: string; data: { title: string; game: string; wip?: boolean } };
+
+function toCards(entries: CollectionEntry[], urlPrefix: string): GameCard[] {
+  const groups = new Map<string, MenuLink[]>();
+  for (const e of entries) {
+    const links = groups.get(e.data.game) ?? [];
+    links.push({ label: e.data.title, href: `${urlPrefix}/${e.id}`, wip: e.data.wip });
+    groups.set(e.data.game, links);
+  }
+  return Array.from(groups.entries()).map(([title, links]) => ({ title, links }));
+}
+
+const collectionMemoCards: GameCard[] = [
+  ...toCards(slayEntries,        collectionUrlPrefixes.slayTheSpire),
+  ...toCards(civilizationEntries, collectionUrlPrefixes.civilization),
+  ...toCards(amongUsEntries,     collectionUrlPrefixes.amongUs),
+  ...toCards(ssxEntries,         collectionUrlPrefixes.ssx),
+];
+
+// Merge collection cards + static cards, sort by memoCardOrder
+const allMemoCards: GameCard[] = [
+  ...collectionMemoCards,
+  ...staticMemoCards,
+].sort((a, b) => {
+  const ai = memoCardOrder.indexOf(a.title);
+  const bi = memoCardOrder.indexOf(b.title);
+  return (ai === -1 ? Number.MAX_SAFE_INTEGER : ai) - (bi === -1 ? Number.MAX_SAFE_INTEGER : bi);
+});
+
+// ── Build column section (all entries under one card, sorted by id) ──────────
+const sortedColumns = [...columnEntries].sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+const columnCard: GameCard = {
+  title: 'ゲームの思い出',
+  links: sortedColumns.map(e => ({
+    label: `${e.data.title} — ${e.data.game}`,
+    href: `${collectionUrlPrefixes.column}/${e.id}`,
+  })),
+};
 ---
 
 <BaseLayout>
@@ -20,82 +78,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 
   <!-- メイン攻略 -->
-  <div class="section-label">メイン攻略</div>
+  <div class="section-label">{mainSection.label}</div>
   <div class="games-grid">
-
-    <div class="game-card">
-      <h2>ワイルドアームズ（無印）<small>Wild Arms / PS</small></h2>
-      <ul>
-        <li><a href="/wildarms/about">概要</a></li>
-        <li><a href="/wildarms/story">ストーリー攻略 <span class="wip">（製作途中）</span></a></li>
-        <li><a href="/wildarms/eventdeta">ミニゲーム・イベントデータ</a></li>
-        <li><a href="/wildarms/mame">豆知識</a></li>
-        <li><a href="/wildarms/secret">隠し要素</a></li>
-        <li><a href="/wildarms/urawaza">裏技・バグ技</a></li>
-        <li><a href="/wildarms/walksea">「海歩きバグ」検証</a></li>
-        <li><a href="/wildarms/item">盗める・落とす重要アイテムリスト</a></li>
-        <li>
-          ステータス成長表
-          <ul>
-            <li><a href="/wildarms/s-rody">ロディ</a></li>
-            <li><a href="/wildarms/s-zack">ザック</a></li>
-            <li><a href="/wildarms/s-cecilia">セシリア</a></li>
-            <li><a href="/wildarms/s-graph">グラフによる比較</a></li>
-          </ul>
-        </li>
-        <li>
-          戦闘研究
-          <ul>
-            <li><a href="/wildarms/b-rody">ロディ</a></li>
-            <li><a href="/wildarms/b-zack">ザック</a></li>
-            <li><a href="/wildarms/b-cecilia">セシリア</a></li>
-            <li><a href="/wildarms/b-guardian">ガーディアン関連研究</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>魔術士オーフェン<small>Sorcerous Stabber ORPHEN / PS</small></h2>
-      <ul>
-        <li><a href="https://u83ism.github.io/DLB/orphen/aboutg.htm" target="_blank" rel="noopener">概要 ↗</a></li>
-        <li><span class="wip">ストーリー攻略（未）</span></li>
-        <li><a href="https://u83ism.github.io/DLB/orphen/boss.htm" target="_blank" rel="noopener">ボス攻略 ↗</a></li>
-        <li><a href="https://u83ism.github.io/DLB/orphen/battle.htm" target="_blank" rel="noopener">戦闘指南 ↗</a></li>
-        <li><a href="https://u83ism.github.io/DLB/orphen/secret.htm" target="_blank" rel="noopener">隠し要素＆小ネタ ↗</a></li>
-        <li><span class="wip">敵データベース（未）</span></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>各種プロレスゲーム</h2>
-      <ul>
-        <li>
-          エキサイティングプロレス5
-          <ul>
-            <li><a href="https://21st-century-power-bomb.netlify.app/game/5season" target="_blank" rel="noopener">シーズンモード攻略 ↗ <span class="wip">（製作途中）</span></a></li>
-            <li><a href="https://21st-century-power-bomb.netlify.app/game/5movelist" target="_blank" rel="noopener">技捜索用リスト ↗</a></li>
-            <li><a href="https://21st-century-power-bomb.netlify.app/game/5movechange" target="_blank" rel="noopener">技変更ガイド ↗</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
+    {mainSection.cards.map(card => (
+      <div class="game-card">
+        <h2>
+          {card.title}
+          {card.subtitle && <small>{card.subtitle}</small>}
+        </h2>
+        <ul>
+          {card.links.map(link => (
+            <li>
+              {link.children ? (
+                <>
+                  {link.label}
+                  <ul>
+                    {link.children.map(child => (
+                      <li>
+                        {child.href ? (
+                          <a href={child.href} target={child.external ? '_blank' : undefined} rel={child.external ? 'noopener' : undefined}>
+                            {child.label}{child.external && ' ↗'}{child.wip && <span class="wip">（製作途中）</span>}
+                          </a>
+                        ) : (
+                          <span class="wip">{child.label}（未）</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : link.href ? (
+                <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener' : undefined}>
+                  {link.label}{link.external && ' ↗'}{link.wip && <span class="wip">（製作途中）</span>}
+                </a>
+              ) : (
+                <span class="wip">{link.label}（未）</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 
   <!-- コラム：ゲームの思い出 -->
   <div class="section-label">コラム：ゲームの思い出</div>
   <div class="games-grid">
     <div class="game-card">
-      <h2>ゲームの思い出</h2>
+      <h2>{columnCard.title}</h2>
       <ul>
-        <li><a href="/column/1">第1回「スクウェア黄金期の傑作」<small>クロノトリガー</small></a></li>
-        <li><a href="/column/2">第2回「何でこんなに面白い物を見逃していたんだ？」<small>テトリス ザ・グランドマスター2</small></a></li>
-        <li><a href="/column/3">第3回「鬼の哭く街にエロは必要なし！」<small>鬼哭街</small></a></li>
-        <li><a href="/column/4">第4回「デフォルメ系レーシングの偉大なる元祖」<small>マリオカート</small></a></li>
-        <li><a href="/column/5">第5回「テクモがゲーム業界に送りこんだ奇手」<small>モンスターファーム</small></a></li>
-        <li><a href="/column/6">第6回「小さな仮想世界という実験」<small>ガンパレードマーチ</small></a></li>
-        <li><a href="/column/7">第7回「王道は進化する」<small>ドラゴンクエスト8</small></a></li>
+        {columnCard.links.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
       </ul>
     </div>
   </div>
@@ -103,70 +136,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- ゲームメモ・考察 -->
   <div class="section-label">ゲームメモ・考察</div>
   <div class="games-grid">
-
-    <div class="game-card">
-      <h2>Slay the Spire</h2>
-      <ul>
-        <li><a href="/slay-the-spire/watcher">Watcherクラス考察</a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>Civilization 6</h2>
-      <ul>
-        <li><a href="/civilization/civ6-heroes">「英雄と伝説」モード 考察</a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>Civilization Revolution</h2>
-      <ul>
-        <li><a href="/civilization/civ-revolution">四方山メモ</a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>Among Us</h2>
-      <ul>
-        <li><a href="/among-us/among-us-2024">2024年のAmong Us 考</a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>BLACK/MATRIXシリーズ</h2>
-      <ul>
-        <li><a href="/bm/bm2-wp">B/M2 武器熟練度考察</a></li>
-        <li><a href="/bm/bmoo-exp">B/MOO 自動系スキル修得考察</a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>Tropico</h2>
-      <ul>
-        <li><a href="/tropico">攻略メモ</a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>首都高バトル0</h2>
-      <ul>
-        <li><a href="/highway/guide">攻略・裏技・データ</a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>SSX<small>エクストリームレーシングSSX</small></h2>
-      <ul>
-        <li><a href="/ssx/guide">攻略メモ <span class="wip">（製作途中）</span></a></li>
-      </ul>
-    </div>
-
-    <div class="game-card">
-      <h2>Final Fantasy 5</h2>
-      <ul>
-        <li><a href="/ff5/ap-chart">必要AP量一覧表（SFC/GBA両対応）</a></li>
-      </ul>
-    </div>
-
+    {allMemoCards.map(card => (
+      <div class="game-card">
+        <h2>
+          {card.title}
+          {card.subtitle && <small>{card.subtitle}</small>}
+        </h2>
+        <ul>
+          {card.links.map(link => (
+            <li>
+              {link.href ? (
+                <a href={link.href}>
+                  {link.label}{link.wip && <span class="wip">（製作途中）</span>}
+                </a>
+              ) : (
+                <span class="wip">{link.label}（未）</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 </BaseLayout>

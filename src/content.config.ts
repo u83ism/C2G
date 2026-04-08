@@ -6,6 +6,7 @@ const gameContent = z.object({
   title: z.string(),
   game: z.string(),
   description: z.string().optional(),
+  wip: z.boolean().optional(),
 });
 
 const civilization = defineCollection({
