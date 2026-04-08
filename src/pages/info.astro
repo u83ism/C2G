@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'インフォメーション';
+const description = 'CRADLE 2 GRAVE サイト概要・リンク・連絡先';
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="prose">
+  <h1>インフォメーション</h1>
+
+  <section>
+    <p>
+      ようこそ「CRADLE 2 GRAVE」へ。当サイトはゆうやみが機種・ジャンルを問わず好きなゲームを取り扱うことが目的となっています。そのため、かなり脈絡のない取り扱い内容になっていますが、御了承ください。
+    </p>
+  </section>
+
+  <section>
+    <h2>サイトデータ</h2>
+    <table>
+      <tr>
+        <th>管理人</th>
+        <td>ゆうやみ</td>
+      </tr>
+      <tr>
+        <th>正式名称</th>
+        <td>CRADLE 2 GRAVE（略称：C2G）</td>
+      </tr>
+      <tr>
+        <th>アドレス</th>
+        <td>https://cradle2grave.netlify.app/</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>管理人に連絡したい時</h2>
+    <p>
+      誤字脱字等があったり、質問・連絡等があればメールください。<br />
+      また当サイトは著作権等を侵害する意図はありません。不適切なものがあれば、著作権を保有していることを証明した上で連絡していただければ、すぐに取り外します。
+    </p>
+    <p>
+      <img src="/images/mail.gif" alt="メールアドレス" width="200" height="25" />
+    </p>
+  </section>
+  </div>
+</BaseLayout>
