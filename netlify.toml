@@ -12,7 +12,7 @@
 
 [[redirects]]
   from = "/wildarms/story.htm"
-  to = "/wildarms/story"
+  to = "/wildarms/about"
   status = 301
 
 [[redirects]]
@@ -118,6 +118,46 @@
 [[redirects]]
   from = "/column.htm"
   to = "/column"
+  status = 301
+
+[[redirects]]
+  from = "/column-g1.htm"
+  to = "/column/1"
+  status = 301
+
+[[redirects]]
+  from = "/column-g2.htm"
+  to = "/column/2"
+  status = 301
+
+[[redirects]]
+  from = "/column-g3.htm"
+  to = "/column/3"
+  status = 301
+
+[[redirects]]
+  from = "/column-g4.htm"
+  to = "/column/4"
+  status = 301
+
+[[redirects]]
+  from = "/column-g5.htm"
+  to = "/column/5"
+  status = 301
+
+[[redirects]]
+  from = "/column-g6.htm"
+  to = "/column/6"
+  status = 301
+
+[[redirects]]
+  from = "/column-g7.htm"
+  to = "/column/7"
+  status = 301
+
+[[redirects]]
+  from = "/index.htm"
+  to = "/"
   status = 301
 
 [[redirects]]
