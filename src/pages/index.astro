@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   staticCards,
@@ -17,9 +18,7 @@ const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries] =
   ]);
 
 // ── Build collection-based GameCard[] (grouped by game field) ────────────────
-type CollectionEntry = { id: string; data: { title: string; game: string; releaseYear: number; wip?: boolean } };
-
-function toCards(entries: CollectionEntry[], urlPrefix: string): GameCard[] {
+function toCards(entries: CollectionEntry<'civilization' | 'slay-the-spire' | 'among-us' | 'ssx'>[], urlPrefix: string): GameCard[] {
   const groups = new Map<string, { links: MenuLink[]; releaseYear: number }>();
   for (const e of entries) {
     const group = groups.get(e.data.game) ?? { links: [], releaseYear: e.data.releaseYear };
