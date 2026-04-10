@@ -20,6 +20,8 @@ const { Content, headings } = await render(entry);
   game={entry.data.game}
   headings={headings}
   breadcrumb={[{ label: 'コラム', href: '/column' }]}
+  publishedAt={entry.data.publishedAt}
+  updatedAt={entry.data.updatedAt}
 >
   <Content />
 </MarkdownLayout>

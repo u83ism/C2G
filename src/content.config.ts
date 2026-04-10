@@ -8,6 +8,8 @@ const gameContent = z.object({
   releaseYear: z.number(),
   description: z.string().optional(),
   wip: z.boolean().optional(),
+  publishedAt: z.string().date().optional(), // 初回公開日（YYYY-MM-DD）
+  updatedAt: z.string().date().optional(),   // 最終更新日（YYYY-MM-DD）
 });
 
 const civilization = defineCollection({
