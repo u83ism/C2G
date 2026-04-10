@@ -83,24 +83,27 @@ publishedAt: "2026-03-12"
 
 ## 無限ループコンボ図
 
-### 基本形：噴火+ ⇔ 悪しきを恐れず
+### 基本形：憤怒⇔平静往復
 
 最も基本的な2枚ループ。噴火（UG）が平静を解除しつつダメージ＋2エナジー回収、悪しきを恐れずで平静に戻る。
 
 ```mermaid
-flowchart LR
-  A["平静スタンス"] -- "噴火+（コスト1）\n解除→2エナジー獲得＋ダメージ" --> B["通常スタンス"]
-  B -- "悪しきを恐れず（コスト1）\n移行＋ダメージ" --> A
-```
+flowchart TD
+  Normal["通常"]
+  Calm["平静"]
+  Wrath["憤怒"]
 
-### 拡張形：無の型：心を組み込んだドロー付きループ
+  Calm  -->|"噴火+ / 憤慨 / かんしゃく"|  Wrath
+  Wrath -->|"悪しきを恐れず / 内なる平穏"| Calm
+  Calm  -->|"無の型シリーズ"|              Normal
+  Wrath -->|"無の型シリーズ"|              Normal
+  Normal-->|"噴火+ / 憤慨 / かんしゃく"|  Wrath
+  Normal-->|"悪しきを恐れず / 内なる平穏"| Calm
 
-無の型：心（コスト1）を挟むことでドローを稼ぎつつループを継続できる。
-
-```mermaid
-flowchart LR
-  A["平静スタンス"] -- "噴火+（コスト1）\n解除→2エナジー＋ダメージ" --> B["通常スタンス"]
-  B -- "無の型：心（コスト1）\n移行＋カードドロー" --> A
-  A -- "悪しきを恐れず（コスト1）\n移行＋ダメージ" --> C["憤怒スタンス"]
-  C -- "噴火+（コスト1）\n解除→2エナジー＋2倍ダメージ" --> B
+  classDef calmStyle   fill:#1e4080,stroke:#5080c0,color:#c8d8f0
+  classDef wrathStyle  fill:#801e1e,stroke:#c05050,color:#f0c8c8
+  classDef normalStyle fill:#404040,stroke:#808080,color:#d0d0d0
+  class Calm   calmStyle
+  class Wrath  wrathStyle
+  class Normal normalStyle
 ```
