@@ -93,11 +93,11 @@ flowchart TD
   Calm["平静"]
   Wrath["憤怒"]
 
-  Calm  -->|"噴火+ / 憤慨 / かんしゃく"|  Wrath
+  Calm  -->|"噴火#plus; / 憤慨 / かんしゃく"|  Wrath
   Wrath -->|"悪しきを恐れず / 内なる平穏"| Calm
   Calm  -->|"無の型シリーズ"|              Normal
   Wrath -->|"無の型シリーズ"|              Normal
-  Normal-->|"噴火+ / 憤慨 / かんしゃく"|  Wrath
+  Normal-->|"噴火#plus; / 憤慨 / かんしゃく"|  Wrath
   Normal-->|"悪しきを恐れず / 内なる平穏"| Calm
 
   classDef calmStyle   fill:#1e4080,stroke:#5080c0,color:#c8d8f0
