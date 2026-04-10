@@ -7,14 +7,17 @@ import {
   collectionUrlPrefixes,
 } from '../data/menu';
 import type { GameCard, MenuLink } from '../data/menu';
+import { manualUpdates } from '../data/updates';
+import { buildUpdates } from '../lib/buildUpdates';
 
 // ── Fetch collections ────────────────────────────────────────────────────────
-const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries] =
+const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries, columnEntries] =
   await Promise.all([
     getCollection('civilization'),
     getCollection('slay-the-spire'),
     getCollection('among-us'),
     getCollection('ssx'),
+    getCollection('column'),
   ]);
 
 // ── Build collection-based GameCard[] (grouped by game field) ────────────────
@@ -27,6 +30,19 @@ function toCards(entries: CollectionEntry<'civilization' | 'slay-the-spire' | 'a
   }
   return Array.from(groups.entries()).map(([title, { links, releaseYear }]) => ({ title, links, releaseYear }));
 }
+
+// ── Build updates ────────────────────────────────────────────────────────────
+const allContentMetas = [
+  ...civilizationEntries,
+  ...slayEntries,
+  ...amongUsEntries,
+  ...ssxEntries,
+  ...columnEntries,
+].map(e => ({ title: e.data.title, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt }));
+const recentUpdates = buildUpdates(manualUpdates, allContentMetas);
+
+// YYYY-MM-DD → YYYY/MM/DD 表示用
+const formatUpdateDate = (iso: string): string => iso.replaceAll('-', '/');
 
 // 全カードをリリース年（新しい順）でソート
 const allCards: GameCard[] = [
@@ -44,14 +60,16 @@ const allCards: GameCard[] = [
   <div class="updates">
     <div class="section-label">更新履歴</div>
     <table>
-      <tr>
-        <td>2026/04/09</td>
-        <td>
-          <ul>
-            <li>リニューアルしました</li>
-          </ul>
-        </td>
-      </tr>
+      {recentUpdates.map(entry => (
+        <tr>
+          <td>{formatUpdateDate(entry.date)}</td>
+          <td>
+            <ul>
+              {entry.items.map(item => <li>{item}</li>)}
+            </ul>
+          </td>
+        </tr>
+      ))}
     </table>
   </div>
 
