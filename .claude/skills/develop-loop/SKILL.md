@@ -46,7 +46,8 @@ description: "ユーザーの介入なしにタスクを自律的に消化する
 ### 6. コミット・プッシュ
 
 - `.claude/rules/commit-message.md` のGitmoji規約に従いコミットメッセージを作成する
-- `git add`・`git commit`・`git push` を実行する
+- `git add`・`git commit`・`git push` を実行する（`develop` ブランチ上で行う）
+- `main` へのマージが必要な場合は `git merge --no-ff develop` を使う（Fast-forward禁止）
 - **手順1に戻る**
 
 ---

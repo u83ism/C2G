@@ -1,3 +1,18 @@
+## ブランチ戦略
+
+### develop → main マージ
+
+- `develop` から `main` へのマージは必ず `--no-ff` で行う
+- Fast-forwardを禁止し、マージコミットを必ず作成する
+- これにより main ブランチ上に切り戻しポイントが明確に残る
+
+```bash
+git checkout main
+git merge --no-ff develop
+```
+
+---
+
 ## コミット規約
 
 ### 基本ルール
