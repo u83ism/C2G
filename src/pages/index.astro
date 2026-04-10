@@ -74,7 +74,7 @@ const allCards: GameCard[] = [
                       <li>
                         {child.href ? (
                           <a href={child.href} target={child.external ? '_blank' : undefined} rel={child.external ? 'noopener' : undefined}>
-                            {child.label}{child.external && ' ↗'}{child.wip && <span class="wip">（製作途中）</span>}
+                            {child.label}{child.external && ' 🔗'}{child.wip && <span class="wip">（製作途中）</span>}
                           </a>
                         ) : (
                           <span class="wip">{child.label}（未）</span>
@@ -85,7 +85,7 @@ const allCards: GameCard[] = [
                 </>
               ) : link.href ? (
                 <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener' : undefined}>
-                  {link.label}{link.external && ' ↗'}{link.wip && <span class="wip">（製作途中）</span>}
+                  {link.label}{link.external && ' 🔗'}{link.wip && <span class="wip">（製作途中）</span>}
                 </a>
               ) : (
                 <span class="wip">{link.label}（未）</span>
