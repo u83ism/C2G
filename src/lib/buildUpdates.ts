@@ -2,6 +2,7 @@ import type { UpdateEntry } from '../data/updates';
 
 type ContentMeta = {
   readonly title: string;
+  readonly game: string;
   readonly publishedAt?: string | undefined;
   readonly updatedAt?: string | undefined;
 };
@@ -25,8 +26,8 @@ export function buildUpdates(
   }
 
   for (const c of contents) {
-    if (c.publishedAt) push(c.publishedAt, `「${c.title}」を公開`);
-    if (c.updatedAt)   push(c.updatedAt,   `「${c.title}」を更新`);
+    if (c.publishedAt) push(c.publishedAt, `${c.game}「${c.title}」を公開`);
+    if (c.updatedAt)   push(c.updatedAt,   `${c.game}「${c.title}」を更新`);
   }
 
   return Array.from(map.entries())

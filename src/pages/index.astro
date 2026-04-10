@@ -38,7 +38,7 @@ const allContentMetas = [
   ...amongUsEntries,
   ...ssxEntries,
   ...columnEntries,
-].map(e => ({ title: e.data.title, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt }));
+].map(e => ({ title: e.data.title, game: e.data.game, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt }));
 const recentUpdates = buildUpdates(manualUpdates, allContentMetas);
 
 // YYYY-MM-DD → YYYY/MM/DD 表示用
