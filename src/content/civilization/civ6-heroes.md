@@ -3,6 +3,7 @@ title: "「英雄と伝説」モード 考察"
 game: "Civilization 6"
 releaseYear: 2016
 description: "英雄と伝説モードの各英雄ユニットを評価・考察します。"
+publishedAt: "2025-10-12"
 ---
 
 

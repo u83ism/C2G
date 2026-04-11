@@ -10,9 +10,17 @@ interface Props {
   game: string;
   breadcrumb: { label: string; href: string }[];
   headings?: Heading[];
+  publishedAt?: string;
+  updatedAt?: string;
 }
 
-const { title, description, game, breadcrumb, headings = [] } = Astro.props;
+const { title, description, game, breadcrumb, headings = [], publishedAt, updatedAt } = Astro.props;
+
+// YYYY-MM-DD → 日本語表記に変換
+function formatDate(iso: string): string {
+  const [y, m, d] = iso.split('-');
+  return `${y}年${Number(m)}月${Number(d)}日`;
+}
 const filtered = headings.filter(h => h.depth <= 3);
 const pageTitle = `${game} ${title}`;
 ---
@@ -37,6 +45,12 @@ const pageTitle = `${game} ${title}`;
   <div class="page-header">
     <div class="game-label">{game}</div>
     <h1 class="page-title">{title}</h1>
+    {(publishedAt || updatedAt) && (
+      <div class="page-dates">
+        {publishedAt && <span>執筆：{formatDate(publishedAt)}</span>}
+        {updatedAt && <span>更新：{formatDate(updatedAt)}</span>}
+      </div>
+    )}
   </div>
 
   <article class="prose">
@@ -77,6 +91,14 @@ const pageTitle = `${game} ${title}`;
   font-weight: 400;
   color: var(--text-muted);
   line-height: 1.4;
+}
+
+.page-dates {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 :global(.prose hr) {

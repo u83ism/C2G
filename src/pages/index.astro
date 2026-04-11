@@ -1,25 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   staticCards,
   collectionUrlPrefixes,
 } from '../data/menu';
 import type { GameCard, MenuLink } from '../data/menu';
+import { manualUpdates } from '../data/updates';
+import { buildUpdates } from '../lib/buildUpdates';
 
 // ── Fetch collections ────────────────────────────────────────────────────────
-const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries] =
+const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries, columnEntries] =
   await Promise.all([
     getCollection('civilization'),
     getCollection('slay-the-spire'),
     getCollection('among-us'),
     getCollection('ssx'),
+    getCollection('column'),
   ]);
 
 // ── Build collection-based GameCard[] (grouped by game field) ────────────────
-type CollectionEntry = { id: string; data: { title: string; game: string; releaseYear: number; wip?: boolean } };
-
-function toCards(entries: CollectionEntry[], urlPrefix: string): GameCard[] {
+function toCards(entries: CollectionEntry<'civilization' | 'slay-the-spire' | 'among-us' | 'ssx'>[], urlPrefix: string): GameCard[] {
   const groups = new Map<string, { links: MenuLink[]; releaseYear: number }>();
   for (const e of entries) {
     const group = groups.get(e.data.game) ?? { links: [], releaseYear: e.data.releaseYear };
@@ -28,6 +30,19 @@ function toCards(entries: CollectionEntry[], urlPrefix: string): GameCard[] {
   }
   return Array.from(groups.entries()).map(([title, { links, releaseYear }]) => ({ title, links, releaseYear }));
 }
+
+// ── Build updates ────────────────────────────────────────────────────────────
+const allContentMetas = [
+  ...civilizationEntries,
+  ...slayEntries,
+  ...amongUsEntries,
+  ...ssxEntries,
+  ...columnEntries,
+].map(e => ({ title: e.data.title, game: e.data.game, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt }));
+const recentUpdates = buildUpdates(manualUpdates, allContentMetas);
+
+// YYYY-MM-DD → YYYY/MM/DD 表示用
+const formatUpdateDate = (iso: string): string => iso.replaceAll('-', '/');
 
 // 全カードをリリース年（新しい順）でソート
 const allCards: GameCard[] = [
@@ -45,14 +60,16 @@ const allCards: GameCard[] = [
   <div class="updates">
     <div class="section-label">更新履歴</div>
     <table>
-      <tr>
-        <td>2026/04/09</td>
-        <td>
-          <ul>
-            <li>リニューアルしました</li>
-          </ul>
-        </td>
-      </tr>
+      {recentUpdates.map(entry => (
+        <tr>
+          <td>{formatUpdateDate(entry.date)}</td>
+          <td>
+            <ul>
+              {entry.items.map(item => <li>{item}</li>)}
+            </ul>
+          </td>
+        </tr>
+      ))}
     </table>
   </div>
 
@@ -75,7 +92,7 @@ const allCards: GameCard[] = [
                       <li>
                         {child.href ? (
                           <a href={child.href} target={child.external ? '_blank' : undefined} rel={child.external ? 'noopener' : undefined}>
-                            {child.label}{child.external && ' ↗'}{child.wip && <span class="wip">（製作途中）</span>}
+                            {child.label}{child.external && ' 🔗'}{child.wip && <span class="wip">（製作途中）</span>}
                           </a>
                         ) : (
                           <span class="wip">{child.label}（未）</span>
@@ -86,7 +103,7 @@ const allCards: GameCard[] = [
                 </>
               ) : link.href ? (
                 <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener' : undefined}>
-                  {link.label}{link.external && ' ↗'}{link.wip && <span class="wip">（製作途中）</span>}
+                  {link.label}{link.external && ' 🔗'}{link.wip && <span class="wip">（製作途中）</span>}
                 </a>
               ) : (
                 <span class="wip">{link.label}（未）</span>

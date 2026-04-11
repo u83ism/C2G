@@ -28,7 +28,7 @@ const sorted = entries.sort((a, b) => a.id.localeCompare(b.id));
     max-width: 720px;
     margin: 0 auto 2rem;
     padding: 0 1rem;
-    color: var(--color-text-muted);
+    color: var(--text-muted);
   }
 
   .column-list {
@@ -47,23 +47,23 @@ const sorted = entries.sort((a, b) => a.id.localeCompare(b.id));
     flex-direction: column;
     gap: 0.2rem;
     padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--border);
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.15s;
   }
 
   .column-list li a:hover {
-    background-color: var(--color-surface-hover, rgba(255,255,255,0.05));
+    background-color: var(--surface-2);
   }
 
   .column-title {
-    color: var(--color-accent);
+    color: var(--accent);
     font-size: 0.95rem;
   }
 
   .column-game {
-    color: var(--color-text-muted);
+    color: var(--text-muted);
     font-size: 0.8rem;
   }
 </style>

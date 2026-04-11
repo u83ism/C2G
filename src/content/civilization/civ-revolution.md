@@ -3,6 +3,7 @@ title: "四方山メモ"
 game: "Civilization Revolution"
 releaseYear: 2008
 description: "iOS版Civilization Revolution 1/2を1000時間プレイした記録と考察。"
+publishedAt: "2023-11-24"
 ---
 
 # このテキストは何か
