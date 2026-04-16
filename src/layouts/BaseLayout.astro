@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -32,6 +33,7 @@ const hasSidebar = Astro.slots.has('sidebar');
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <title>{pageTitle}</title>
+    <ClientRouter />
   </head>
   <body>
     <header>
@@ -60,13 +62,15 @@ const hasSidebar = Astro.slots.has('sidebar');
       <p>CRADLE 2 GRAVE &mdash; ゆうやみ</p>
     </footer>
 
-    <!-- mermaid.js: .mermaid 要素が存在するページでのみ動的インポートして初期化 -->
+    <!-- mermaid.js: View Transitions対応のため astro:page-load で毎回初期化 -->
     <script>
-      if (document.querySelector('pre.mermaid')) {
-        const { default: mermaid } = await import('mermaid');
-        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
-        await mermaid.run({ querySelector: 'pre.mermaid' });
-      }
+      document.addEventListener('astro:page-load', async () => {
+        if (document.querySelector('pre.mermaid')) {
+          const { default: mermaid } = await import('mermaid');
+          mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+          await mermaid.run({ querySelector: 'pre.mermaid' });
+        }
+      });
     </script>
   </body>
 </html>
