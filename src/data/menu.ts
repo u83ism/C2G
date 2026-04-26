@@ -2,6 +2,7 @@
 // 静的ページはここからインポートし、トップメニューカードもここを参照する。
 // コレクションベースのページはfrontmatterの `game:` フィールドを使用するため、値を一致させること。
 export const gameInfo = {
+  silentStorm: { title: 'Silent Storm',                             releaseYear: 2003 },
   excitePro5: { title: 'エキサイティングプロレス5',                   releaseYear: 2004 },
   bmoo:       { title: 'ブラックマトリクス OO',                         releaseYear: 2002 },
   highway:    { title: '首都高バトル0',                             releaseYear: 2001 },
@@ -30,11 +31,12 @@ export type GameCard = {
 // ── コレクションのURLプレフィックス ──────────────────────────────────────────
 // index.astro でコレクションエントリIDからhrefを生成するために使用する。
 export const collectionUrlPrefixes = {
-  civilization:  '/civilization',
+  'silent-storm':   '/silent-storm',
+  civilization:     '/civilization',
   'slay-the-spire': '/slay-the-spire',
   'among-us':       '/among-us',
-  ssx:           '/ssx',
-  column:        '/column',
+  ssx:              '/ssx',
+  column:           '/column',
 } as const;
 
 // ── 静的ゲームカード一覧 ──────────────────────────────────────────────────────

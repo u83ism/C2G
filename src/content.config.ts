@@ -37,4 +37,9 @@ const ssx = defineCollection({
   schema: gameContent,
 });
 
-export const collections = { civilization, 'slay-the-spire': slayTheSpire, 'among-us': amongUs, column, ssx };
+const silentStorm = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/silent-storm' }),
+  schema: gameContent,
+});
+
+export const collections = { civilization, 'slay-the-spire': slayTheSpire, 'among-us': amongUs, column, ssx, 'silent-storm': silentStorm };

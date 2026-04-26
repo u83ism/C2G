@@ -11,17 +11,18 @@ import { manualUpdates } from '../data/updates';
 import { buildUpdates } from '../lib/buildUpdates';
 
 // ── Fetch collections ────────────────────────────────────────────────────────
-const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries, columnEntries] =
+const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries, columnEntries, silentStormEntries] =
   await Promise.all([
     getCollection('civilization'),
     getCollection('slay-the-spire'),
     getCollection('among-us'),
     getCollection('ssx'),
     getCollection('column'),
+    getCollection('silent-storm'),
   ]);
 
 // ── Build collection-based GameCard[] (grouped by game field) ────────────────
-function toCards(entries: CollectionEntry<'civilization' | 'slay-the-spire' | 'among-us' | 'ssx'>[], urlPrefix: string): GameCard[] {
+function toCards(entries: CollectionEntry<'civilization' | 'slay-the-spire' | 'among-us' | 'ssx' | 'silent-storm'>[], urlPrefix: string): GameCard[] {
   const groups = new Map<string, { links: MenuLink[]; releaseYear: number }>();
   for (const e of entries) {
     const group = groups.get(e.data.game) ?? { links: [], releaseYear: e.data.releaseYear };
@@ -38,6 +39,7 @@ const allContentMetas = [
   ...amongUsEntries,
   ...ssxEntries,
   ...columnEntries,
+  ...silentStormEntries,
 ].map(e => ({ title: e.data.title, game: e.data.game, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt }));
 const recentUpdates = buildUpdates(manualUpdates, allContentMetas);
 
@@ -47,10 +49,11 @@ const formatUpdateDate = (iso: string): string => iso.replaceAll('-', '/');
 // 全カードをリリース年（新しい順）でソート
 const allCards: GameCard[] = [
   ...staticCards,
-  ...toCards(slayEntries,        collectionUrlPrefixes['slay-the-spire']),
+  ...toCards(silentStormEntries,  collectionUrlPrefixes['silent-storm']),
+  ...toCards(slayEntries,         collectionUrlPrefixes['slay-the-spire']),
   ...toCards(civilizationEntries, collectionUrlPrefixes.civilization),
-  ...toCards(amongUsEntries,     collectionUrlPrefixes['among-us']),
-  ...toCards(ssxEntries,         collectionUrlPrefixes.ssx),
+  ...toCards(amongUsEntries,      collectionUrlPrefixes['among-us']),
+  ...toCards(ssxEntries,          collectionUrlPrefixes.ssx),
 ].sort((a, b) => b.releaseYear - a.releaseYear);
 
 ---

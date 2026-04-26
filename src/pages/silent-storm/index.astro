@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = await getCollection('silent-storm');
+const sorted = entries.sort((a, b) => a.id.localeCompare(b.id));
+---
+
+<BaseLayout title="Silent Storm" description="Silent Storm の攻略・考察・データまとめ。">
+  <div class="section-label">Silent Storm</div>
+  <ul class="entry-list">
+    {sorted.map(entry => (
+      <li>
+        <a href={`/silent-storm/${entry.id}`}>
+          <span class="entry-title">{entry.data.title}</span>
+          {entry.data.description && (
+            <span class="entry-desc">{entry.data.description}</span>
+          )}
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .entry-list li a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .entry-list li a:hover {
+    background-color: var(--surface-2);
+  }
+
+  .entry-title {
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+
+  .entry-desc {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+</style>
