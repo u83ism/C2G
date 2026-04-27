@@ -36,8 +36,15 @@ const hasSidebar = Astro.slots.has('sidebar');
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImageURL} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{pageTitle}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CRADLE 2 GRAVE",
+      "url": Astro.site?.href,
+    })} />
     <ClientRouter />
   </head>
   <body>
