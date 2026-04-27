@@ -1,7 +1,5 @@
 ---
 title: "概要、基本情報、メモ"
-game: "Silent Storm"
-releaseYear: 2003
 description: "概要と基本情報"
 publishedAt: "2026-04-27"
 ---

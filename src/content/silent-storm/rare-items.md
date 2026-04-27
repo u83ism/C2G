@@ -1,7 +1,5 @@
 ---
 title: "レアアイテム"
-game: "Silent Storm"
-releaseYear: 2003
 description: "レアアイテム情報"
 publishedAt: "2026-04-27"
 ---

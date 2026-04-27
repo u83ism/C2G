@@ -1,19 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   staticCards,
   collectionUrlPrefixes,
+  collectionGameMeta,
 } from '../data/menu';
 import type { GameCard, MenuLink } from '../data/menu';
 import { manualUpdates } from '../data/updates';
 import { buildUpdates } from '../lib/buildUpdates';
 
 // ── Fetch collections ────────────────────────────────────────────────────────
-const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries, columnEntries, silentStormEntries] =
+const [civ6Entries, civRevEntries, slayEntries, amongUsEntries, ssxEntries, columnEntries, silentStormEntries] =
   await Promise.all([
-    getCollection('civilization'),
+    getCollection('civilization6'),
+    getCollection('civilization-revolution'),
     getCollection('slay-the-spire'),
     getCollection('among-us'),
     getCollection('ssx'),
@@ -21,26 +22,35 @@ const [civilizationEntries, slayEntries, amongUsEntries, ssxEntries, columnEntri
     getCollection('silent-storm'),
   ]);
 
-// ── Build collection-based GameCard[] (grouped by game field) ────────────────
-function toCards(entries: CollectionEntry<'civilization' | 'slay-the-spire' | 'among-us' | 'ssx' | 'silent-storm'>[], urlPrefix: string): GameCard[] {
-  const groups = new Map<string, { links: MenuLink[]; releaseYear: number }>();
-  for (const e of entries) {
-    const group = groups.get(e.data.game) ?? { links: [], releaseYear: e.data.releaseYear };
-    group.links.push({ label: e.data.title, href: `${urlPrefix}/${e.id}`, wip: e.data.wip });
-    groups.set(e.data.game, group);
-  }
-  return Array.from(groups.entries()).map(([title, { links, releaseYear }]) => ({ title, links, releaseYear }));
+// ── 単一ゲームコレクションをGameCardに変換 ──────────────────────────────────
+function toCard(
+  meta: { readonly title: string; readonly releaseYear: number },
+  entries: { data: { title: string; wip?: boolean }; id: string }[],
+  urlPrefix: string,
+): GameCard {
+  return {
+    title: meta.title,
+    releaseYear: meta.releaseYear,
+    links: entries.map(e => ({ label: e.data.title, href: `${urlPrefix}/${e.id}`, wip: e.data.wip })),
+  };
+}
+
+// ── 更新履歴用メタデータを構築 ──────────────────────────────────────────────
+type MetaEntry = { data: { title: string; publishedAt?: string; updatedAt?: string } };
+function toMetas(entries: MetaEntry[], gameName: string) {
+  return entries.map(e => ({ title: e.data.title, game: gameName, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt }));
 }
 
 // ── Build updates ────────────────────────────────────────────────────────────
 const allContentMetas = [
-  ...civilizationEntries,
-  ...slayEntries,
-  ...amongUsEntries,
-  ...ssxEntries,
-  ...columnEntries,
-  ...silentStormEntries,
-].map(e => ({ title: e.data.title, game: e.data.game, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt }));
+  ...toMetas(silentStormEntries, collectionGameMeta['silent-storm'].title),
+  ...toMetas(slayEntries,        collectionGameMeta['slay-the-spire'].title),
+  ...toMetas(civ6Entries,        collectionGameMeta['civilization6'].title),
+  ...toMetas(civRevEntries,      collectionGameMeta['civilization-revolution'].title),
+  ...toMetas(amongUsEntries,     collectionGameMeta['among-us'].title),
+  ...toMetas(ssxEntries,         collectionGameMeta['ssx'].title),
+  ...columnEntries.map(e => ({ title: e.data.title, game: e.data.game, publishedAt: e.data.publishedAt, updatedAt: e.data.updatedAt })),
+];
 const recentUpdates = buildUpdates(manualUpdates, allContentMetas);
 
 // YYYY-MM-DD → YYYY/MM/DD 表示用
@@ -49,11 +59,12 @@ const formatUpdateDate = (iso: string): string => iso.replaceAll('-', '/');
 // 全カードをリリース年（新しい順）でソート
 const allCards: GameCard[] = [
   ...staticCards,
-  ...toCards(silentStormEntries,  collectionUrlPrefixes['silent-storm']),
-  ...toCards(slayEntries,         collectionUrlPrefixes['slay-the-spire']),
-  ...toCards(civilizationEntries, collectionUrlPrefixes.civilization),
-  ...toCards(amongUsEntries,      collectionUrlPrefixes['among-us']),
-  ...toCards(ssxEntries,          collectionUrlPrefixes.ssx),
+  toCard(collectionGameMeta['silent-storm'],            silentStormEntries, collectionUrlPrefixes['silent-storm']),
+  toCard(collectionGameMeta['slay-the-spire'],          slayEntries,        collectionUrlPrefixes['slay-the-spire']),
+  toCard(collectionGameMeta['civilization6'],         civ6Entries,        collectionUrlPrefixes['civilization6']),
+  toCard(collectionGameMeta['civilization-revolution'], civRevEntries,      collectionUrlPrefixes['civilization-revolution']),
+  toCard(collectionGameMeta['among-us'],                amongUsEntries,     collectionUrlPrefixes['among-us']),
+  toCard(collectionGameMeta['ssx'],                     ssxEntries,         collectionUrlPrefixes['ssx']),
 ].sort((a, b) => b.releaseYear - a.releaseYear);
 
 ---

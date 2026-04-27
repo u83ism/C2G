@@ -1,16 +1,30 @@
 // ── ゲーム情報（単一ソース） ────────────────────────────────────────────────────
-// 静的ページはここからインポートし、トップメニューカードもここを参照する。
-// コレクションベースのページはfrontmatterの `game:` フィールドを使用するため、値を一致させること。
+// 静的ページと単一ゲームコレクションのメタデータはここで一元管理する。
 export const gameInfo = {
-  silentStorm: { title: 'Silent Storm',                             releaseYear: 2003 },
-  excitePro5: { title: 'エキサイティングプロレス5',                   releaseYear: 2004 },
-  bmoo:       { title: 'ブラックマトリクス OO',                         releaseYear: 2002 },
-  highway:    { title: '首都高バトル0',                             releaseYear: 2001 },
-  tropico:    { title: 'Tropico',                                  releaseYear: 2001 },
-  bm2:        { title: 'ブラックマトリクス 2',                          releaseYear: 2000 },
-  orphen:     { title: 'Sorcerous Stabber ORPHEN 魔術士オーフェン',  releaseYear: 2000 },
-  wildarms:   { title: 'ワイルドアームズ',                          releaseYear: 1996 },
-  ff5:        { title: 'ファイナルファンタジー5',                     releaseYear: 1992 },
+  silentStorm:            { title: 'Silent Storm',                             releaseYear: 2003 },
+  slayTheSpire:           { title: 'Slay the Spire',                           releaseYear: 2019 },
+  ssx:                    { title: 'エクストリームレーシングSSX(2000)',           releaseYear: 2000 },
+  amongUs:                { title: 'Among Us',                                 releaseYear: 2018 },
+  civilization6:          { title: 'Civilization 6',                           releaseYear: 2016 },
+  civilizationRevolution: { title: 'Civilization Revolution',                  releaseYear: 2008 },
+  excitePro5:             { title: 'エキサイティングプロレス5',                   releaseYear: 2004 },
+  bmoo:                   { title: 'ブラックマトリクス OO',                       releaseYear: 2002 },
+  highway:                { title: '首都高バトル0',                             releaseYear: 2001 },
+  tropico:                { title: 'Tropico',                                  releaseYear: 2001 },
+  bm2:                    { title: 'ブラックマトリクス 2',                        releaseYear: 2000 },
+  orphen:                 { title: 'Sorcerous Stabber ORPHEN 魔術士オーフェン',  releaseYear: 2000 },
+  wildarms:               { title: 'ワイルドアームズ',                          releaseYear: 1996 },
+  ff5:                    { title: 'ファイナルファンタジー5',                     releaseYear: 1992 },
+} as const;
+
+// コレクション名 → ゲームメタデータのマッピング（単一ゲームコレクション用）
+export const collectionGameMeta = {
+  'silent-storm':            gameInfo.silentStorm,
+  'slay-the-spire':          gameInfo.slayTheSpire,
+  'ssx':                     gameInfo.ssx,
+  'among-us':                gameInfo.amongUs,
+  civilization6:             gameInfo.civilization6,
+  'civilization-revolution': gameInfo.civilizationRevolution,
 } as const;
 
 export type MenuLink = {
@@ -31,12 +45,13 @@ export type GameCard = {
 // ── コレクションのURLプレフィックス ──────────────────────────────────────────
 // index.astro でコレクションエントリIDからhrefを生成するために使用する。
 export const collectionUrlPrefixes = {
-  'silent-storm':   '/silent-storm',
-  civilization:     '/civilization',
-  'slay-the-spire': '/slay-the-spire',
-  'among-us':       '/among-us',
-  ssx:              '/ssx',
-  column:           '/column',
+  'silent-storm':            '/silent-storm',
+  civilization6:             '/civilization6',
+  'civilization-revolution': '/civilization-revolution',
+  'slay-the-spire':          '/slay-the-spire',
+  'among-us':                '/among-us',
+  ssx:                       '/ssx',
+  column:                    '/column',
 } as const;
 
 // ── 静的ゲームカード一覧 ──────────────────────────────────────────────────────
@@ -116,14 +131,14 @@ export const staticCards: readonly GameCard[] = [
     title: gameInfo.bm2.title,
     releaseYear: gameInfo.bm2.releaseYear,
     links: [
-      { label: '武器熟練度考察', href: '/bm/bm2-wp' },
+      { label: '武器熟練度考察', href: '/bm2/wp' },
     ],
   },
   {
     title: gameInfo.bmoo.title,
     releaseYear: gameInfo.bmoo.releaseYear,
     links: [
-      { label: '自動系スキル修得考察', href: '/bm/bmoo-exp' },
+      { label: '自動系スキル修得考察', href: '/bmoo/exp' },
     ],
   },
 ];

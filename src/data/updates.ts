@@ -8,5 +8,6 @@ export type UpdateEntry = {
 };
 
 export const manualUpdates: readonly UpdateEntry[] = [
+  { date: '2026-04-27', items: ['一部ページのURLを変更しました'] },
   { date: '2026-04-09', items: ['サイトをリニューアルしました'] },
 ];

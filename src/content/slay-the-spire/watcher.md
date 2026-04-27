@@ -1,7 +1,5 @@
 ---
 title: "ウォッチャーに関するまとめ"
-game: "Slay the Spire"
-releaseYear: 2019
 description: "スタンス切り替えを軸にしたウォッチャーの戦略考察。"
 publishedAt: "2026-03-12"
 updatedAt: "2026-04-11"
