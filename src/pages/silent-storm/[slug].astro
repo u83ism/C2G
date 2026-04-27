@@ -4,7 +4,7 @@ import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
 import { collectionGameMeta } from '../../data/menu';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('among-us');
+  const entries = await getCollection('silent-storm');
   return entries.map(entry => ({
     params: { slug: entry.id },
     props: { entry },
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const game = collectionGameMeta['among-us'];
+const game = collectionGameMeta['silent-storm'];
 ---
 
 <MarkdownLayout
@@ -21,7 +21,7 @@ const game = collectionGameMeta['among-us'];
   description={entry.data.description}
   game={game.title}
   headings={headings}
-  breadcrumb={[{ label: 'ミニ攻略', href: '/' }]}
+  breadcrumb={[{ label: game.title, href: '/silent-storm' }]}
   publishedAt={entry.data.publishedAt}
   updatedAt={entry.data.updatedAt}
 >

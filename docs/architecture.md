@@ -1,38 +1,6 @@
-# CRADLE 2 GRAVE — 現状
+# CRADLE 2 GRAVE — アーキテクチャ
 
-最終更新: 2026-04-10
-
-## サイト概要
-
-- **サイト名:** CRADLE 2 GRAVE（C2G）
-- **管理人:** ゆうやみ
-- **公開時期:** 2000年頃〜現在
-- **コンセプト:** 機種・ジャンル不問の個人ゲーム攻略・考察サイト
-- **本番URL:** https://cradle2grave.netlify.app/
-- **ホスティング:** Netlify（GitHub `main` ブランチから自動デプロイ）
-
----
-
-## 技術スタック
-
-| 項目 | 内容 |
-|---|---|
-| SSG | Astro（v6系） |
-| 言語 | TypeScript（strict） |
-| スタイル | CSS（変数ベース・ダークテーマ） |
-| ホスティング | Netlify |
-| CD | Netlify（`main` push で自動デプロイ） |
-| データ形式 | Markdown（文章系）/ TypeScript・JSON（データ系） |
-
-### 導入プラグイン
-
-| プラグイン | 種別 | 役割 |
-|---|---|---|
-| `rehype-external-links` | rehype | 外部リンクに `_blank` / `noopener` と🔗を自動付与 |
-| `remarkMermaid`（自作） | remark | ` ```mermaid ` ブロックを `<pre class="mermaid">` に変換。Shiki より前に動かすため remark で実装 |
-| `mermaid` | クライアント | `<pre class="mermaid">` 要素が存在するページでのみ動的インポートしてダイアグラムを描画 |
-
----
+最終更新: 2026-04-26
 
 ## ページ種別とルーティング
 
@@ -54,6 +22,7 @@
 
 | コレクション名 | ディレクトリ | URLプレフィックス |
 |---|---|---|
+| `silent-storm` | `src/content/silent-storm/` | `/silent-storm` |
 | `civilization` | `src/content/civilization/` | `/civilization` |
 | `slay-the-spire` | `src/content/slay-the-spire/` | `/slay-the-spire` |
 | `among-us` | `src/content/among-us/` | `/among-us` |
@@ -108,11 +77,6 @@ MarkdownLayout の `sidebar` スロットに渡される。
 静的ページのゲームタイトル・リリース年は `gameInfo` 定数で管理。
 トップメニューカード（`staticCards`）もここを参照する。
 
-新規ゲームを追加する場合は：
-1. `gameInfo` にキーを追加
-2. `staticCards` にカードを追加
-3. 各 `.astro` ページでも `gameInfo` からインポートして使用
-
 コレクションベースのページは frontmatter の `game:` フィールドを単一ソースとする。
 値は `gameInfo` の `title` と一致させること。
 
@@ -136,21 +100,3 @@ MarkdownLayout の `sidebar` スロットに渡される。
 - **スクレイパー生成・大量データ → JSONファイル（`src/data/**/*.json`）**
   - Pythonスクリプトが自然にJSONを出力するため
   - 例: wildarms・bm 系
-
----
-
-## コンテンツ移行状況
-
-| 旧フォルダ（legacy/） | ゲームタイトル | 移行状況 | 備考 |
-|---|---|---|---|
-| `wildarms/` | ワイルドアームズ（無印） | **✅ 完了** | 全16ページ移植 |
-| `bm/` | BLACK/MATRIX 2, MOO | **✅ 完了** | bm2-wp / bmoo-exp 移植。bmoo-battle は内容未完成のため対象外 |
-| `civilization/` | Civilization Revolution, Civ6 | **✅ 完了** | コンテンツコレクション（`civilization`） |
-| `slay_the_spire/` | Slay the Spire | **✅ 完了** | コンテンツコレクション（`slay-the-spire`）、URL: `/slay-the-spire/` |
-| `mini/among-us-2024.md` | Among Us | **✅ 完了** | コンテンツコレクション（`among-us`） |
-| `mini/ssx.htm` | SSX | **✅ 完了** | `src/content/ssx/guide.md`、URL: `/ssx/guide` |
-| `mini/ff5-ap.htm` | FF5 | **✅ 完了** | `src/data/ff5/jobs.ts` + `src/pages/ff5/ap-chart.astro` |
-| `mini/highway.htm` | 首都高0 | **✅ 完了** | `src/content/highway/guide.md`、URL: `/highway/guide` |
-| `tropico/cp.htm` | Tropico | **✅ 完了** | `src/data/tropico/scenarios.ts` + `src/pages/tropico.astro` |
-| `column*.htm` | コラム（7本） | **✅ 完了** | `src/content/column/` |
-| `mini/ddrwords*.htm` | DDR | **廃止** | 古すぎるため削除 |
