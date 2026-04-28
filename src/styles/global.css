@@ -138,6 +138,24 @@ main {
   }
 }
 
+@media (max-width: 600px) {
+  /* ヘッダーを2段レイアウトに変更 */
+  .header-inner {
+    height: auto;
+    padding: 0.6rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  header nav {
+    margin-left: 0;
+    gap: 1rem;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+  }
+}
+
 /* ── Footer ──────────────────────────────── */
 
 footer {
