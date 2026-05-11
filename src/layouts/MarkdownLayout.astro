@@ -23,9 +23,45 @@ function formatDate(iso: string): string {
 }
 const filtered = headings.filter(h => h.depth <= 3);
 const pageTitle = `${game} ${title}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+
+// BreadcrumbList 構造化データ
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'TOP', item: Astro.site?.href },
+    ...breadcrumb.map(({ label, href }, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: label,
+      item: new URL(href, Astro.site).href,
+    })),
+    { '@type': 'ListItem', position: breadcrumb.length + 2, name: title },
+  ],
+};
+
+// Article 構造化データ
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: pageTitle,
+  ...(description ? { description } : {}),
+  url: canonicalURL,
+  ...(publishedAt ? { datePublished: publishedAt } : {}),
+  ...(updatedAt ? { dateModified: updatedAt } : {}),
+  author: { '@type': 'Person', name: 'ゆうやみ' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'CRADLE 2 GRAVE',
+    url: Astro.site?.href,
+  },
+};
 ---
 
 <BaseLayout title={pageTitle} description={description}>
+  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   {filtered.length > 1 && (
     <TableOfContents slot="sidebar" headings={filtered} />
   )}

@@ -46,6 +46,7 @@ const hasSidebar = Astro.slots.has('sidebar');
       "name": "CRADLE 2 GRAVE",
       "url": Astro.site?.href,
     })} />
+    <slot name="head" />
     <ClientRouter />
   </head>
   <body>
