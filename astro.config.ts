@@ -1,10 +1,12 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 import remarkMermaid from './src/lib/remarkMermaid';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://cradle2grave.netlify.app',
+  integrations: [sitemap()],
   markdown: {
     remarkPlugins: [
       // ```mermaid ブロックを <pre class="mermaid"> に変換（Shiki より前に処理）

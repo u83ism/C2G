@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cradle2grave.netlify.app/sitemap-index.xml
